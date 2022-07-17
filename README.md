@@ -2,7 +2,7 @@
 This library contains all core functionality for connecting to atlas, defining type definitions, and their respective type class used to create and get atlas entities.
 To push atlas entities of a certain type, the type must be defined in atlas and the request must be of a certain format. 
 The type definitions can be found in their respective file under ``m4i_atlas_core/entities/atlas`` along with their atlas class that formats requests into the correct shape to send to the atlas api. 
-The library currently holds type definitions that are used in Van Oord and are available here in 4 sets of definitions.
+The library currently holds type definitions that are used in the Aurelius Governance solution and are available here in 4 sets of definitions.
 The following type definitions sets are available :
 ``
 data_dictionary_types_def, process_types_def, connectors_types_def and kubernetes_types_def.
