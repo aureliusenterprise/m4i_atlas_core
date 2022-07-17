@@ -33,6 +33,8 @@ async def handle_request(
     auth = None
     headers: dict = {}
 
+    access_token = access_token if access_token != '' else None
+
     if access_token is None:
         auth = BasicAuth(username, password)
     else:

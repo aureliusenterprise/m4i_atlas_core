@@ -1,3 +1,4 @@
+from .atlas_change_message import *
 from .attribute_def import *
 from .attribute_search_result import *
 from .attributes import *

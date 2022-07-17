@@ -8,7 +8,9 @@ from .BusinessField import *
 from .BusinessDataQuality import *
 from .BusinessDataset import *
 from .BusinessSystem import *
-from ..m4i import *
+from ..m4i.BusinessSource import *
+from ..m4i.BusinessReferenceable import *
+from ..m4i.BusinessArchimate import *
 
 data_dictionary_types_def = TypesDef(
     entity_defs=[
@@ -24,6 +26,7 @@ data_dictionary_types_def = TypesDef(
         atlas_dataset_def,
         data_field_def,
         data_quality_def
+
     ],
     relationship_defs=[
         m4i_psystem_csystem_rel_def,
@@ -42,7 +45,8 @@ data_dictionary_types_def = TypesDef(
         m4i_dataQuality_fields_rel_def,
         m4i_archimate_project_rel_def,
         m4i_business_source_rel_def,
-        m4i_pfield_cfield_rel_def
+        m4i_pfield_cfield_rel_def,
+        m4i_lead_entity_rel_def
     ],
     classification_defs=[
         m4i_classification_pii,
