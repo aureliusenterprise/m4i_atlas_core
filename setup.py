@@ -10,5 +10,6 @@ setup(
         "aiohttp",
         "dataclasses-json",
         "pandas"
+        # "python-keycloak"
     ]
 )
