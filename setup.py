@@ -9,7 +9,7 @@ setup(
         "aiocache",
         "aiohttp",
         "dataclasses-json",
-        "pandas"
-        # "python-keycloak"
+        "pandas",
+        "python-keycloak"
     ]
 )
