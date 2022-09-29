@@ -28,7 +28,7 @@ async def handle_request(
         "atlas.credentials.password"
     )
 
-    url = f"http://{atlas_url}/{path}"
+    url = f"{atlas_url}/{path}"
 
     auth = None
     headers: dict = {}
