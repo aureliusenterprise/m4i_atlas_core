@@ -19,3 +19,4 @@ from .get_type_defs import *
 from .get_lineage_by_guid import *
 from .get_lineage_by_qualified_name import *
 from .get_classification_defs import *
+from .update_type_defs import *
