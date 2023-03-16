@@ -3,11 +3,12 @@ version: '3'
 services:
   devcontainer:
     build:
+      context: .
       dockerfile: Dockerfile
-      args: 
+      args:
         VARIANT: "3.11"
         NODE_VERSION: "lts/*"
     volumes:
-      - ../..:/workspaces:cached
+      - ..:/workspace:cached
     command: sleep infinity
-    mem_limit: 1000m
+    
