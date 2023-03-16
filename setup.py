@@ -9,6 +9,14 @@ setup(
         "aiocache",
         "aiohttp",
         "dataclasses-json",
-        "pandas"
-    ]
+        "pandas",
+        "python-keycloak"
+    ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "pytest-asyncio",
+            "pytest-cov",
+        ]
+    }
 )

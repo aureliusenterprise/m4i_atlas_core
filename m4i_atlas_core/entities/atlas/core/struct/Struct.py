@@ -9,15 +9,14 @@ from ..attributes import Attributes
 @dataclass
 class StructBase(DataClassJsonMixin):
     pass
-
-
 # END StructBase
+
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class StructDefaultsBase(DataClassJsonMixin):
     type_name: str = field(default="m4i_struct")
-    attributes: Attributes = field(default_factory=dict)
+    attributes: Attributes = field(default_factory=Attributes)
 # END StructDefaultsBase
 
 
@@ -25,5 +24,4 @@ class StructDefaultsBase(DataClassJsonMixin):
 @dataclass
 class Struct(StructDefaultsBase, StructBase):
     pass
-
 # END Struct

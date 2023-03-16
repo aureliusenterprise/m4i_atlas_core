@@ -74,19 +74,15 @@ m4i_lead_entity_rel_def = RelationshipDef(
 @dataclass
 class BusinessDataDomainAttributesBase(M4IAttributesBase):
     name: str
-
-
 # END BusinessDataDomainAttributesBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class BusinessDataDomainAttributesDefaultsBase(Attributes):
-    domain_lead: List[ObjectId] = field(default_factory=list)
     definition: Optional[str] = None
-    source: Optional[List[ObjectId]] = None
-
-
+    domain_lead: List[ObjectId] = field(default_factory=list)
+    source: List[ObjectId] = field(default_factory=list)
 # END BusinessDataDomainAttributesBase
 
 
@@ -94,8 +90,6 @@ class BusinessDataDomainAttributesDefaultsBase(Attributes):
 @dataclass
 class BusinessDataDomainAttributes(BusinessDataDomainAttributesDefaultsBase, BusinessDataDomainAttributesBase):
     pass
-
-
 # END BusinessDataDomainAttributes
 
 
@@ -103,23 +97,19 @@ class BusinessDataDomainAttributes(BusinessDataDomainAttributesDefaultsBase, Bus
 @dataclass
 class BusinessDataDomainBase(EntityBase):
     attributes: BusinessDataDomainAttributes
-
-
-# ENDBusinessDataDomainBase
+# END BusinessDataDomainBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class BusinessDataDomainDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessDataDomainDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessDataDomain(Entity, BusinessDataDomainDefaultsBase, BusinessDataDomainBase):
+class BusinessDataDomain(BusinessDataDomainDefaultsBase, BusinessDataDomainBase, Entity):
     type_name: str = "m4i_data_domain"
 
     @classmethod
@@ -132,12 +122,9 @@ class BusinessDataDomain(Entity, BusinessDataDomainDefaultsBase, BusinessDataDom
         """
 
         references = [
-            *self.attributes.domain_lead
+            *self.attributes.domain_lead,
+            *self.attributes.source
         ]
-
-        if self.attributes.source is not None:
-            references = [*references, *self.attributes.source]
-        # END IF
 
         return filter(None, references)
     # END get_referred_entities

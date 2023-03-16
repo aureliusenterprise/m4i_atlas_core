@@ -8,6 +8,7 @@ from .delete_entity_soft import *
 from .get_entities_by_attribute import *
 from .get_entities_by_type_name import *
 from .get_entity_audit_events import *
+from .get_entity_audit import *
 from .get_entity_by_guid import *
 from .get_type_def import *
 from .get_glossary import *
@@ -18,3 +19,4 @@ from .get_type_defs import *
 from .get_lineage_by_guid import *
 from .get_lineage_by_qualified_name import *
 from .get_classification_defs import *
+from .update_type_defs import *
