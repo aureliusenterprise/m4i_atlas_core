@@ -32,6 +32,8 @@ The API module is divided into two submodules:
       - [`get_type_def`](#get_type_def)
       - [`get_type_defs`](#get_type_defs)
       - [`update_type_defs`](#update_type_defs)
+    - [Interacting with the cache](#interacting-with-the-cache)
+      - [Clearing the cache](#clearing-the-cache)
   - [Auth](#auth)
     - [Usage](#usage-1)
     - [ConfigStore](#configstore)
@@ -493,6 +495,28 @@ print(updated_type_defs)
 ```
 
 This example updates an existing entity definition with the given types parameter in Apache Atlas. The `update_type_defs` function returns a `TypesDef` object containing the details of the type definitions that were successfully updated.
+
+### Interacting with the cache
+
+Some of the API functions are cached through the `aiocache` library. This can be useful when the same API calls are made multiple times, saving time and reducing the load on the server.
+
+You can access the cache for any API function through the `cache` property. For example:
+
+```python
+from m4i_atlas_core import get_entity_by_guid
+
+cache = get_entity_by_guid.cache
+```
+
+#### Clearing the cache
+
+If you want to clear the cache for a specific function, you can call the `clear` method on the cache decorator. Here's an example of how to clear the cache for the `get_entities_by_type_name` function:
+
+```python
+from m4i_atlas_core import get_entity_by_guid
+
+await get_entity_by_guid.cache.clear()
+```
 
 ## Auth
 
