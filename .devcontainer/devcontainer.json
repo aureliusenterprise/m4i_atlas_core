@@ -1,6 +1,6 @@
 // For format details, see https://aka.ms/devcontainer.json.
 {
-  "name": "Example Dev Container",
+  "name": "M4I Atlas Core Dev Container",
 
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "dockerComposeFile": "compose-dev.yaml",
