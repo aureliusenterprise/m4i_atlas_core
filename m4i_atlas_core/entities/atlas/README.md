@@ -23,7 +23,7 @@ Please find the table of contents for this `README` below.
 To use the data objects from the library in your code, you can easily import them. For example, if you want to work with the `Entity` data object, you can import it as follows:
 
 ```python
-from m4i_atlas_core.entities import Entity
+from m4i_atlas_core import Entity
 ```
 
 Once you have imported the desired data object, you can create instances, access their properties, and manipulate them as needed.
@@ -51,7 +51,7 @@ Suppose you have the following JSON representation of an entity:
 You can convert it to an `Entity` instance using the following code:
 
 ```python
-from m4i_atlas_core.entities import Entity
+from m4i_atlas_core import Entity
 
 json_data = '''JSON string here'''
 entity_instance = Entity.from_json(json_data)
@@ -84,7 +84,7 @@ schema = Entity.schema()
 Marshmallow schemas associated with the data objects in this library can be employed to perform data validation. The following example demonstrates how to use a Marshmallow schema to validate JSON input data:
 
 ```python
-from m4i_atlas_core.entities import Entity
+from m4i_atlas_core import Entity
 
 # Load the schema for the Entity data object
 entity_schema = Entity.schema()
