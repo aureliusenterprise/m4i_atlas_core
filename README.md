@@ -1,15 +1,10 @@
 # M4I Atlas Core
 
-This library contains all core functionality for connecting to atlas, defining type definitions, and their respective type class used to create and get atlas entities.
+Welcome to the M4I Atlas Core library!
+This library is designed to streamline your interactions with Aurelius Atlas, providing a comprehensive data object model for all entities related to Aurelius Atlas and a set of functions to facilitate communication with the Aurelius Atlas API.
+With this library, you can easily create, retrieve, and manage Atlas entities, enabling a seamless integration with the Aurelius Atlas Data Governance solution.
 
-To push atlas entities of a certain type, the type must be defined in atlas and the request must be of a certain format.
-The type definitions can be found in their respective file under `m4i_atlas_core/entities/atlas` along with their atlas class that formats requests into the correct shape to send to the atlas api.
-The library currently holds type definitions that are used in the Aurelius Governance solution and are available here in 4 sets of definitions.
-
-The following type definitions sets are available :
-`data_dictionary_types_def, process_types_def, connectors_types_def and kubernetes_types_def.`
-
-For more detail on this please look at the Atlas Type documentation.
+In this `README`, you will find detailed instructions on how to install, configure, and use the M4I Atlas Core library to simplify your work with the Aurelius Atlas platform.
 
 ## Installation
 
@@ -71,26 +66,48 @@ To install the project including development dependencies, please run the follow
 pip install -e .[dev] --user
 ```
 
-## Configurations and Credentials
+## How to use
 
-In the `scripts` directory.
-Please make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py` respectively.
-Please set the configuration parameters and credentials for `atlas`.
+This section provides an overview of how to use the M4I Atlas Core library, including configuration options and example scripts to help you get started.
+
+### Configuration Options
+
+Before you begin using any functions from the library, you will need to configure certain parameters and credentials for Atlas.
+In the scripts directory, make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py`, respectively.
+Set the configuration parameters and credentials for Atlas as needed.
+
+> **Note**: When using the Dev Container, the sample files are copied for you automatically. However, you will still have to set the configuration parameters yourself.
 
 | Name                       | Required | Description                                                                                 |
 | -------------------------- | -------- | ------------------------------------------------------------------------------------------- |
 | atlas.server.url           | True     | The Server Url that Atlas runs on, with '/api/atlas' post fix.                              |
-| data.dictionary.path       | False    | The Path to the Data Dictionary to be loaded.                                               |
 | atlas.credentials.username | True     | The Username to be used to access the Atlas Instance.                                       |
 | atlas.credentials.password | True     | The Password to be used to access the Atlas Instance must correspond to the Username given. |
 
-## Execution
+#### Using the ConfigStore
 
-1. Create the Python Environment. How to do this can be found in this file under `Installation`
-2. Fill in the Configurations and Credentials as indicated in this file under `Configurations and Credentials`
-3. Run `scripts\load_type_defs.py` in the terminal to load the definitions.
-   The main function in `load_type_defs.py` can be adjusted to determine which set of type definitions to load.
-   Please note that if a subset of the set already exist, then the loading of the type definitions will fail.
+The M4I Atlas Core library utilizes a central configuration store, `ConfigStore`, which is accessed by various built-in functions. The `ConfigStore` can be initialized in different ways to suit your specific use case. In the example scripts provided with the library, the `ConfigStore` is initialized as follows:
+
+```python
+from config import config
+from credentials import credentials
+
+from m4i_atlas_core import ConfigStore
+
+store = ConfigStore.get_instance()
+store.load({
+   **config,
+   **credentials
+})
+```
+
+[Please find more detailed documentation about `ConfigStore` here.](./m4i_atlas_core/config/README.md)
+
+### Example Scripts
+
+The library includes example scripts to demonstrate how to interact with the Atlas API using the provided data object models and functions. These scripts can be found in the scripts directory of the project. Below is a brief overview of some example scripts:
+
+- `load_type_defs.py`: This script loads the type definitions into Atlas. The main function in load_type_defs.py can be adjusted to determine which set of type definitions to load. Please note that if a subset of the set already exists, the loading of the type definitions will fail.
 
 ## Testing
 

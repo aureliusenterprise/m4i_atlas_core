@@ -31,4 +31,4 @@ async def create_entities(*entities: Entity, referred_entities: Optional[Dict[st
     mutations = EntityMutationResponse.from_json(response)
 
     return mutations
-# END create_entity
+# END create_entities
