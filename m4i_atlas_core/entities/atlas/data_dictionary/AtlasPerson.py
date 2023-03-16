@@ -1,11 +1,10 @@
-from dataclasses import dataclass
-from typing import Optional, List, Iterable
+from dataclasses import dataclass, field
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
 
-from ..core import (AttributeDef, Attributes, Entity, EntityBase,
-                    EntityDef, EntityDefaultsBase, TypeCategory,ObjectId)
-
+from ..core import (AttributeDef, Attributes, Entity, EntityBase, EntityDef,
+                    EntityDefaultsBase, ObjectId, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 atlas_person_attributes_def = [
@@ -39,8 +38,6 @@ atlas_person_def = EntityDef(
 @dataclass
 class AtlasPersonAttributesBase(M4IAttributesBase):
     pass
-
-
 # END AtlasPersonAttributesBase
 
 
@@ -49,9 +46,7 @@ class AtlasPersonAttributesBase(M4IAttributesBase):
 class AtlasPersonAttributesDefaultsBase(Attributes):
     name: Optional[str] = None
     email: Optional[str] = None
-    source: Optional[List[ObjectId]] = None
-
-
+    source: List[ObjectId] = field(default_factory=list)
 # END AtlasPersonAttributesBase
 
 
@@ -59,8 +54,6 @@ class AtlasPersonAttributesDefaultsBase(Attributes):
 @dataclass
 class AtlasPersonAttributes(AtlasPersonAttributesDefaultsBase, AtlasPersonAttributesBase):
     pass
-
-
 # END AtlasPersonAttributes
 
 
@@ -68,8 +61,6 @@ class AtlasPersonAttributes(AtlasPersonAttributesDefaultsBase, AtlasPersonAttrib
 @dataclass
 class AtlasPersonBase(EntityBase):
     attributes: AtlasPersonAttributes
-
-
 # ENDAtlasPersonBase
 
 
@@ -77,14 +68,12 @@ class AtlasPersonBase(EntityBase):
 @dataclass
 class AtlasPersonDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END AtlasPersonDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class AtlasPerson(Entity, AtlasPersonDefaultsBase, AtlasPersonBase):
+class AtlasPerson(AtlasPersonDefaultsBase, AtlasPersonBase, Entity):
     type_name: str = "m4i_person"
 
     @classmethod
@@ -95,11 +84,7 @@ class AtlasPerson(Entity, AtlasPersonDefaultsBase, AtlasPersonBase):
         """
         Returns the systems referenced by this person
         """
-        references = []
-
-        if self.attributes.source is not None:
-            references = [*references, *self.attributes.source]
-        # END IF
+        references = self.attributes.source
 
         return filter(None, references)
 # END AtlasPerson

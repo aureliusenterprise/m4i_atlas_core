@@ -1,11 +1,11 @@
-from dataclasses import dataclass
-from typing import Iterable, Optional, List
+from dataclasses import dataclass, field
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
-from ..core import (AttributeDef, Attributes, Entity, EntityBase,
-                    EntityDef, EntityDefaultsBase, ObjectId,
-                    TypeCategory, RelationshipDef, RelationshipEndDef, Cardinality)
 
+from ..core import (AttributeDef, Attributes, Cardinality, Entity, EntityBase,
+                    EntityDef, EntityDefaultsBase, ObjectId, RelationshipDef,
+                    RelationshipEndDef, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 # TypeDef for Entity & Relationships
@@ -106,9 +106,6 @@ m4i_dataQuality_fields_rel_def = RelationshipDef(
 @dataclass
 class BusinessDataQualityAttributesBase(M4IAttributesBase):
     name: str
-    fields: List[ObjectId]
-
-
 # END BusinessDataQualityAttributesBase
 
 
@@ -121,11 +118,10 @@ class BusinessDataQualityAttributesDefaultsBase(Attributes):
     active: Optional[bool] = True
     expression_version: Optional[str] = None
     business_rule_description: Optional[str] = None
+    fields: List[ObjectId] = field(default_factory=list)
     filter_required: Optional[bool] = False
     quality_dimension: Optional[str] = None
-    source: Optional[List[ObjectId]] = None
-
-
+    source: List[ObjectId] = field(default_factory=list)
 # END BusinessDataQualityAttributesDefaultsBase
 
 
@@ -133,8 +129,6 @@ class BusinessDataQualityAttributesDefaultsBase(Attributes):
 @dataclass
 class BusinessDataQualityAttributes(BusinessDataQualityAttributesDefaultsBase, BusinessDataQualityAttributesBase):
     pass
-
-
 # END BusinessDataQualityAttributes
 
 
@@ -142,8 +136,6 @@ class BusinessDataQualityAttributes(BusinessDataQualityAttributesDefaultsBase, B
 @dataclass
 class BusinessDataQualityBase(EntityBase):
     attributes: BusinessDataQualityAttributes
-
-
 # END BusinessDataQualityBase
 
 
@@ -151,16 +143,12 @@ class BusinessDataQualityBase(EntityBase):
 @dataclass
 class BusinessDataQualityDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessDataQualityDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessDataQuality(Entity,
-                          BusinessDataQualityDefaultsBase,
-                          BusinessDataQualityBase):
+class BusinessDataQuality(BusinessDataQualityDefaultsBase, BusinessDataQualityBase, Entity):
     type_name: str = "m4i_data_quality"
 
     @classmethod
@@ -170,11 +158,9 @@ class BusinessDataQuality(Entity,
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
         Returns the following references for this data entity:
-        * data_field
+        * fields
         """
-        references = [
-            self.attributes.data_field
-        ]
+        references = self.attributes.fields
 
         if self.attributes.source is not None:
             references = [*references, *self.attributes.source]

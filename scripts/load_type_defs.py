@@ -1,23 +1,14 @@
 import asyncio
 
-from m4i_atlas_core import (connectors_types_def, data_dictionary_types_def, ConfigStore,
-                            create_type_defs, process_types_def, kubernetes_types_def)
-
 from config import config
 from credentials import credentials
 
-async def create_types():
-
-    response = await asyncio.gather(
-        create_type_defs(data_dictionary_types_def),
-        create_type_defs(connectors_types_def)
-    )
-
-    return response
-# END create_types
+from m4i_atlas_core import (ConfigStore, connectors_types_def,
+                            create_type_defs, data_dictionary_types_def,
+                            kubernetes_types_def, process_types_def)
 
 
-def main():
+async def main():
     store = ConfigStore.get_instance()
 
     store.load({
@@ -25,13 +16,13 @@ def main():
         **credentials
     })
 
-    asyncio.run(create_type_defs(data_dictionary_types_def))
-    asyncio.run(create_type_defs(process_types_def))
-    asyncio.run(create_type_defs(connectors_types_def))
-    asyncio.run(create_type_defs(kubernetes_types_def))
+    await create_type_defs(data_dictionary_types_def)
+    await create_type_defs(process_types_def)
+    await create_type_defs(connectors_types_def)
+    await create_type_defs(kubernetes_types_def)
 # END main
 
 
 if __name__ == "__main__":
-    main()
-# END IF
+    asyncio.run(main())
+# END MAIN

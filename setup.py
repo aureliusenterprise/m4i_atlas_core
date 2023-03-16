@@ -11,5 +11,12 @@ setup(
         "dataclasses-json",
         "pandas",
         "python-keycloak"
-    ]
+    ],
+    extras_require={
+        "dev": [
+            "pytest",
+            "pytest-asyncio",
+            "pytest-cov",
+        ]
+    }
 )

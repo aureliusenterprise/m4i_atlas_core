@@ -1,11 +1,11 @@
 from dataclasses import dataclass, field
-from typing import Iterable, Optional, List
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
-from ..core import (AttributeDef, Attributes, Entity, EntityBase,
-                    EntityDef, EntityDefaultsBase, ObjectId,
-                    TypeCategory, RelationshipDef, RelationshipEndDef, Cardinality)
 
+from ..core import (AttributeDef, Attributes, Cardinality, Entity, EntityBase,
+                    EntityDef, EntityDefaultsBase, ObjectId, RelationshipDef,
+                    RelationshipEndDef, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 data_entity_attributes_def = [
@@ -178,8 +178,6 @@ class BusinessDataEntityAttributesDefaultsBase(Attributes):
     source: List[ObjectId] = field(default_factory=list)
     parent_entity: List[ObjectId] = field(default_factory=list)
     steward: List[ObjectId] = field(default_factory=list)
-
-
 # END BusinessDataEntityAttributesBase
 
 
@@ -187,8 +185,6 @@ class BusinessDataEntityAttributesDefaultsBase(Attributes):
 @dataclass
 class BusinessDataEntityAttributes(BusinessDataEntityAttributesDefaultsBase, BusinessDataEntityAttributesBase):
     pass
-
-
 # END BusinessDataEntityAttributes
 
 
@@ -196,8 +192,6 @@ class BusinessDataEntityAttributes(BusinessDataEntityAttributesDefaultsBase, Bus
 @dataclass
 class BusinessDataEntityBase(EntityBase):
     attributes: BusinessDataEntityAttributes
-
-
 # END BusinessDataEntityBase
 
 
@@ -205,14 +199,12 @@ class BusinessDataEntityBase(EntityBase):
 @dataclass
 class BusinessDataEntityDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessDataEntityDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessDataEntity(Entity, BusinessDataEntityDefaultsBase, BusinessDataEntityBase):
+class BusinessDataEntity(BusinessDataEntityDefaultsBase, BusinessDataEntityBase, Entity):
     type_name: str = "m4i_data_entity"
 
     @classmethod
@@ -232,20 +224,11 @@ class BusinessDataEntity(Entity, BusinessDataEntityDefaultsBase, BusinessDataEnt
         references = [
             *self.attributes.business_owner,
             *self.attributes.steward,
-            *self.attributes.data_domain
+            *self.attributes.data_domain,
+            *self.attributes.parent_entity,
+            *self.attributes.child_entity,
+            *self.attributes.source
         ]
-
-        if self.attributes.parent_entity is not None:
-            references = [*references, *self.attributes.parent_entity]
-        # END IF
-
-        if self.attributes.child_entity is not None:
-            references = [*references, *self.attributes.child_entity]
-        # END IF
-
-        if self.attributes.source is not None:
-            references = [*references, *self.attributes.source]
-        # END IF
 
         return filter(None, references)
     # END get_referred_entities
