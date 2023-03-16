@@ -6,7 +6,6 @@ from dataclasses_json import LetterCase, dataclass_json
 from ..attributes import Attributes
 from ..classification import Classification
 from ..object_id import ObjectId
-from ..relationship_attribute import RelationshipAttribute
 from ..status import Status
 from ..struct import Struct, StructBase, StructDefaultsBase
 from ..term_assignment_header import TermAssignmentHeader
