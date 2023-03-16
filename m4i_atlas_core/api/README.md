@@ -130,7 +130,7 @@ This example creates the given glossary term in Apache Atlas. The `create_glossa
 
 The `create_type_defs` function allows you to create multiple new type definitions in Apache Atlas in bulk. It takes in a `TypesDef` object and an optional access token for authentication purposes.
 
-> **Note:** Only new definitions will be created, and any changes to the existing definitions will be discarded.
+> **Note**: Only new definitions will be created, and any changes to the existing definitions will be discarded.
 
 Here's an example of how to use the `create_type_defs` function:
 
@@ -156,7 +156,7 @@ The `delete_entity_hard` function allows you to permanently delete one or more e
 
 It takes in a list of `guid` strings and an optional access token for authentication purposes.
 
-> **Note:** This API requires elevated user permissions.
+> **Note**: This API requires elevated user permissions.
 
 Here's an example of how to use the delete_entity_hard function:
 
@@ -194,7 +194,7 @@ This example marks the entity with the given `guid` as deleted in Apache Atlas. 
 
 The `get_classification_def` function allows you to retrieve a classification definition from Apache Atlas based on its type name. It takes in the `type_name` of the classification and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_classification_def` function:
 
@@ -214,7 +214,7 @@ This example retrieves the classification definition with the given `type_name` 
 
 The `get_entities_by_attribute` function allows you to retrieve entities from Apache Atlas based on a specified attribute search query. It takes in the `attribute_name`, `attribute_value`, and `type_name` as search parameters, and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Keep in mind that this search only returns entity _headers_, which include the `guid` and `type_name` of the actual entity. You can use these headers to query the entities API for more information.
 
@@ -238,7 +238,7 @@ This example retrieves the entities with the given attribute and type from Apach
 
 The `get_entities_by_type_name` function allows you to search for all entities in Apache Atlas whose type matches the given `type_name`. It takes in the `type_name`, an optional `limit` and `offset` for pagination, and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Keep in mind that this search only returns entity _headers_, which include the `guid` and `type_name` of the actual entity. You can use these headers to query the entities API for more information.
 
@@ -261,7 +261,7 @@ This example retrieves all entities with the given type from Apache Atlas. The `
 
 The `get_entity_audit_events` function allows you to fetch all audit events for an entity in Apache Atlas based on its `guid`. It takes in the `entity_guid` and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_entity_audit_events` function:
 
@@ -283,7 +283,7 @@ The `get_entity_by_guid` function allows you to fetch the complete definition of
 
 You can also provide optional parameters like `ignore_relationships` and `min_ext_info` to customize the results, as well as an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_entity_by_guid` function:
 
@@ -303,7 +303,7 @@ This example fetches the complete definition of the entity with the given `guid`
 
 The `get_glossary_by_guid` function allows you to fetch a glossary in Apache Atlas based on its `guid`. It takes in the `guid` of the glossary and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_glossary_by_guid` function:
 
@@ -323,7 +323,7 @@ This example fetches the glossary with the given `guid` from Apache Atlas. The `
 
 The `get_glossary_category_by_guid` function allows you to fetch a glossary category in Apache Atlas based on its `guid`. It takes in the `guid` of the glossary category and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_glossary_category_by_guid` function:
 
@@ -343,7 +343,7 @@ This example fetches the glossary category with the given `guid` from Apache Atl
 
 The `get_glossary_term_by_guid` function allows you to fetch a glossary term in Apache Atlas based on its `guid`. It takes in the `guid` of the glossary term and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_glossary_term_by_guid` function:
 
@@ -363,7 +363,7 @@ This example fetches the glossary term with the given `guid` from Apache Atlas. 
 
 The `get_glossary` function allows you to fetch all glossaries in Apache Atlas with optional pagination and sorting. The function takes in an optional `limit`, `offset`, and sort `order`, as well as an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the get_glossary function:
 
@@ -388,7 +388,7 @@ The `get_lineage_by_guid` function allows you to fetch the lineage of an entity 
 
 It takes in the `guid` of the entity, the maximum number of hops to traverse the lineage graph using the `depth` parameter (default is 3), the `direction` parameter to specify whether to retrieve input lineage, output lineage or both (default is both), and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_lineage_by_guid` function:
 
@@ -412,7 +412,7 @@ The `get_lineage_by_qualified_name` function allows you to fetch the lineage of 
 
 It takes in the `qualified_name` and `type_name` of the entity, the maximum number of hops to traverse the lineage graph using the `depth` parameter (default is 3), the `direction` parameter to specify whether to retrieve input lineage, output lineage or both (default is both), and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_lineage_by_qualified_name` function:
 
@@ -435,7 +435,7 @@ This example fetches the lineage of the entity with the given `qualified_name` a
 
 The `get_type_def` function allows you to retrieve an entity type definition from Apache Atlas based on its name. It takes in the `input_type` of the entity and an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_type_def` function:
 
@@ -456,7 +456,7 @@ This example retrieves the entity type definition with the given `input_type` fr
 
 The `get_type_defs` function allows you to retrieve all type definitions in Apache Atlas. It takes an optional access token for authentication purposes.
 
-> **Note:** This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
+> **Note**: This function is _cached_, meaning that repeated calls with the same parameters will return the cached result rather than making additional requests to the server.
 
 Here's an example of how to use the `get_type_defs` function:
 
@@ -520,7 +520,7 @@ await get_entity_by_guid.cache.clear()
 
 ## Auth
 
-The Auth submodule provides functionality for retrieving authentication tokens from Keycloak, which are required for accessing the Apache Atlas API.
+The `auth` submodule provides functionality for retrieving authentication tokens from Keycloak, which are required for accessing the Apache Atlas API.
 
 ### Usage
 

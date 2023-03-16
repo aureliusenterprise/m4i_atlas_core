@@ -33,7 +33,7 @@ store.load({
 
 In this example, the `config.py` and `credentials.py` files are imported to obtain the necessary configuration parameters and credentials. The `ConfigStore` is then initialized using the `get_instance()` method, and the configuration and credential dictionaries are merged and loaded into the `ConfigStore` using the `load()` method.
 
-> **Note:** It is recommended to initialize the ConfigStore once when the application starts.
+> **Note**: It is recommended to initialize the ConfigStore once when the application starts.
 
 ### Storing Configuration Settings
 
