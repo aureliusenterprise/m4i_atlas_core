@@ -3,7 +3,7 @@ from typing import Optional
 
 from aiocache import cached
 
-from ...entities import EntityAuditAction, EntityAuditEvent
+from ...entities import EntityAuditEvent
 from ..core import atlas_get
 
 PATH_TEMPLATE = "v2/entity/{entity_guid}/audit"
