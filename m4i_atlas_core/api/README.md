@@ -171,7 +171,7 @@ It takes in a list of `guid` strings and an optional access token for authentica
 
 > **Note**: This API requires elevated user permissions.
 
-Here's an example of how to use the delete_entity_hard function:
+Here's an example of how to use the `delete_entity_hard` function:
 
 ```python
 from m4i_atlas_core import delete_entity_hard
