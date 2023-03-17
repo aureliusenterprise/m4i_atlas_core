@@ -539,13 +539,13 @@ The `auth` submodule provides functionality for retrieving authentication tokens
 
 The `get_keycloak_token` function in the Auth submodule is responsible for retrieving an access token from a Keycloak instance.
 
-To use the get_keycloak_token function, first import it:
+To use the `get_keycloak_token` function, first import it:
 
 ```python
 from m4i_atlas_core import get_keycloak_token
 ```
 
-Next, call the function to retrieve an access token. You can provide your own Keycloak instance and credentials or rely on the pre-configured parameters from the ConfigStore. If you need to use multi-factor authentication, provide the one-time access token (TOTP) as well.
+Next, call the function to retrieve an access token. You can provide your own Keycloak instance and credentials or rely on the pre-configured parameters from the `ConfigStore`. If you need to use multi-factor authentication, provide the one-time access token (TOTP) as well.
 
 ```python
 # Example: Using pre-configured parameters
@@ -558,7 +558,7 @@ access_token = get_keycloak_token(keycloak=my_keycloak_instance, credentials=("m
 access_token = get_keycloak_token(totp="123456")
 ```
 
-The access_token can then be used to authenticate requests to the Apache Atlas API.
+The `access_token` can then be used to authenticate requests to the Apache Atlas API.
 
 ### ConfigStore
 
