@@ -12,14 +12,6 @@ m4i\_atlas\_core.entities.atlas.data\_dictionary.AtlasPerson module
    :undoc-members:
    :show-inheritance:
 
-m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessArchimate module
--------------------------------------------------------------------------
-
-.. automodule:: m4i_atlas_core.entities.atlas.data_dictionary.BusinessArchimate
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessCollection module
 --------------------------------------------------------------------------
 
@@ -52,14 +44,6 @@ m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessDataEntity module
    :undoc-members:
    :show-inheritance:
 
-m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessDataField module
--------------------------------------------------------------------------
-
-.. automodule:: m4i_atlas_core.entities.atlas.data_dictionary.BusinessDataField
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessDataQuality module
 ---------------------------------------------------------------------------
 
@@ -76,18 +60,10 @@ m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessDataset module
    :undoc-members:
    :show-inheritance:
 
-m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessReferenceable module
------------------------------------------------------------------------------
+m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessField module
+---------------------------------------------------------------------
 
-.. automodule:: m4i_atlas_core.entities.atlas.data_dictionary.BusinessReferenceable
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessSource module
-----------------------------------------------------------------------
-
-.. automodule:: m4i_atlas_core.entities.atlas.data_dictionary.BusinessSource
+.. automodule:: m4i_atlas_core.entities.atlas.data_dictionary.BusinessField
    :members:
    :undoc-members:
    :show-inheritance:
@@ -100,10 +76,10 @@ m4i\_atlas\_core.entities.atlas.data\_dictionary.BusinessSystem module
    :undoc-members:
    :show-inheritance:
 
-m4i\_atlas\_core.entities.atlas.data\_dictionary.M4IAttributes module
----------------------------------------------------------------------
+m4i\_atlas\_core.entities.atlas.data\_dictionary.test\_\_BusinessDataset module
+-------------------------------------------------------------------------------
 
-.. automodule:: m4i_atlas_core.entities.atlas.data_dictionary.M4IAttributes
+.. automodule:: m4i_atlas_core.entities.atlas.data_dictionary.test__BusinessDataset
    :members:
    :undoc-members:
    :show-inheritance:

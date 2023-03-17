@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   m4i_atlas_core.entities.atlas.core.atlas_change_message
    m4i_atlas_core.entities.atlas.core.attribute_def
    m4i_atlas_core.entities.atlas.core.attribute_search_result
    m4i_atlas_core.entities.atlas.core.attributes
@@ -26,6 +27,7 @@ Subpackages
    m4i_atlas_core.entities.atlas.core.entity_mutation_response
    m4i_atlas_core.entities.atlas.core.enum_def
    m4i_atlas_core.entities.atlas.core.enum_element_def
+   m4i_atlas_core.entities.atlas.core.exceptions
    m4i_atlas_core.entities.atlas.core.filter_criteria
    m4i_atlas_core.entities.atlas.core.full_text_result
    m4i_atlas_core.entities.atlas.core.glossary
@@ -33,6 +35,9 @@ Subpackages
    m4i_atlas_core.entities.atlas.core.glossary_category
    m4i_atlas_core.entities.atlas.core.glossary_header
    m4i_atlas_core.entities.atlas.core.glossary_term
+   m4i_atlas_core.entities.atlas.core.lineage_direction
+   m4i_atlas_core.entities.atlas.core.lineage_info
+   m4i_atlas_core.entities.atlas.core.lineage_relation
    m4i_atlas_core.entities.atlas.core.number_format
    m4i_atlas_core.entities.atlas.core.object_id
    m4i_atlas_core.entities.atlas.core.propagate_tags

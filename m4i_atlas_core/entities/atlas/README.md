@@ -2,15 +2,10 @@
 
 This section provides an overview of how to use the data object model provided in the library. The data objects are designed to represent different types of entities, attributes, classifications, and other components in Aurelius Atlas.
 
-The `entities` module is organized into two main submodules:
-
-- `core`: This submodule includes data objects that correspond to the Apache Atlas API. These objects are used for representing entities, classifications, relationships, and other components as defined in Apache Atlas.
-- `data_dictionary`: This submodule contains data objects that are specific to the Aurelius Atlas metamodel. These objects extend or customize the core data objects to better suit the requirements of the Aurelius Atlas platform.
-
-Please find the table of contents for this `README` below.
-
 - [Data Object Model](#data-object-model)
-  - [Usage](#usage)
+  - [Features](#features)
+  - [How to use](#how-to-use)
+    - [Submodules](#submodules)
     - [Serialization and deserialization](#serialization-and-deserialization)
       - [From JSON to Instance](#from-json-to-instance)
       - [From Instance to JSON](#from-instance-to-json)
@@ -18,7 +13,16 @@ Please find the table of contents for this `README` below.
       - [Data Validation](#data-validation)
       - [Bulk Serialization and Deserialization](#bulk-serialization-and-deserialization)
 
-## Usage
+## Features
+
+The entities module provides a collection of data objects designed to represent different types of entities, attributes, classifications, and other components in Aurelius Atlas. The main features of the entities module include:
+
+- Data objects related to the Apache Atlas API
+- Data objects related to the Aurelius Atlas metamodel
+- Convenience methods for converting data objects to and from JSON format
+- Marshmallow schemas for data validation, serialization, and deserialization
+
+## How to use
 
 To use the data objects from the library in your code, you can easily import them. For example, if you want to work with the `Entity` data object, you can import it as follows:
 
@@ -27,6 +31,13 @@ from m4i_atlas_core import Entity
 ```
 
 Once you have imported the desired data object, you can create instances, access their properties, and manipulate them as needed.
+
+### Submodules
+
+The `entities` module is organized into two main submodules:
+
+- `core`: This submodule includes data objects that correspond to the Apache Atlas API. These objects are used for representing entities, classifications, relationships, and other components as defined in Apache Atlas.
+- `data_dictionary`: This submodule contains data objects that are specific to the Aurelius Atlas metamodel. These objects extend or customize the core data objects to better suit the requirements of the Aurelius Atlas platform.
 
 ### Serialization and deserialization
 

@@ -2,6 +2,15 @@
 
 `ConfigStore` is a powerful, singleton-based configuration store providing an easy-to-use interface to store, retrieve, and manage configuration settings.
 
+- [ConfigStore](#configstore)
+  - [Features](#features)
+  - [How to use](#how-to-use)
+    - [Initializing the ConfigStore](#initializing-the-configstore)
+    - [Storing Configuration Settings](#storing-configuration-settings)
+    - [Retrieving Configuration Settings](#retrieving-configuration-settings)
+    - [Resetting the ConfigStore](#resetting-the-configstore)
+    - [Error Handling](#error-handling)
+
 ## Features
 
 - Singleton-based implementation ensures a single source of truth for your configuration settings.
@@ -10,7 +19,7 @@
 - Support for default values and required settings.
 - Bulk retrieval and storage of settings using get_many and set_many methods.
 
-## Usage
+## How to use
 
 Please find examples of how to use the `ConfigStore` below.
 

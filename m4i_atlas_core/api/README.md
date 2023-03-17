@@ -2,15 +2,11 @@
 
 This README provides documentation for the M4I Atlas Core `api` module, which is designed for interacting with the Apache Atlas API and retrieving authentication tokens from Keycloak.
 
-The API module is divided into two submodules:
-
-1. `atlas`: This submodule contains functions for interacting with the Apache Atlas API, enabling you to create, read, update, and delete entities and their related metadata.
-
-2. `auth`: This submodule is responsible for retrieving authentication tokens from Keycloak, which are required for accessing and utilizing the Apache Atlas API.
-
 - [API](#api)
-  - [Atlas](#atlas)
-    - [Usage](#usage)
+  - [Features](#features)
+  - [How to use](#how-to-use)
+    - [Submodules](#submodules)
+    - [Atlas](#atlas)
       - [`create_entities`](#create_entities)
       - [`create_glossary`](#create_glossary)
       - [`create_glossary_category`](#create_glossary_category)
@@ -35,22 +31,39 @@ The API module is divided into two submodules:
     - [Interacting with the cache](#interacting-with-the-cache)
       - [Clearing the cache](#clearing-the-cache)
   - [Auth](#auth)
-    - [Usage](#usage-1)
+    - [Usage](#usage)
     - [ConfigStore](#configstore)
 
-## Atlas
+## Features
 
-The `atlas` submodule provides a collection of functions to interact with the Apache Atlas API. These functions allow you to create, retrieve, update, and delete various entities, types, and glossaries in Apache Atlas.
+The API module contains a set of functions that facilitate communication with the Apache Atlas API. These functions provide a convenient and efficient way to interact with the Aurelius Atlas platform. The main features of the API module include:
 
-### Usage
+- Functions for creating, retrieving, updating, and deleting Atlas entities
+- Functions for managing entity relationships and classifications
+- Support for bulk operations, such as bulk entity creation and deletion
+- Error handling and response parsing for API interactions
 
-This section includes examples on how to use each API function.
+## How to use
 
-To use any of these functions, import them from the Atlas submodule:
+To use any of the API functions, import them directly from the library:
 
 ```python
 from m4i_atlas_core import create_entities, create_glossary, ...
 ```
+
+### Submodules
+
+The API module is divided into two submodules:
+
+1. [`atlas`](#atlas): This submodule contains functions for interacting with the Apache Atlas API, enabling you to create, read, update, and delete entities and their related metadata.
+
+2. [`auth`](#auth): This submodule is responsible for retrieving authentication tokens from Keycloak, which are required for accessing and utilizing the Apache Atlas API.
+
+### Atlas
+
+The `atlas` submodule provides a collection of functions to interact with the Apache Atlas API. These functions allow you to create, retrieve, update, and delete various entities, types, and glossaries in Apache Atlas.
+
+The next sections include examples on how to use each API function.
 
 #### `create_entities`
 

@@ -8,6 +8,7 @@ Subpackages
    :maxdepth: 4
 
    m4i_atlas_core.api.atlas
+   m4i_atlas_core.api.auth
    m4i_atlas_core.api.core
 
 Module contents

@@ -36,6 +36,14 @@ m4i\_atlas\_core.functions.atlas.resolve\_entity\_header module
    :undoc-members:
    :show-inheritance:
 
+m4i\_atlas\_core.functions.atlas.test\_get\_entity\_by\_qualified\_name module
+------------------------------------------------------------------------------
+
+.. automodule:: m4i_atlas_core.functions.atlas.test_get_entity_by_qualified_name
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

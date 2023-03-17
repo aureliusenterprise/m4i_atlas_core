@@ -1,10 +1,33 @@
 # M4I Atlas Core
 
 Welcome to the M4I Atlas Core library!
+
 This library is designed to streamline your interactions with Aurelius Atlas, providing a comprehensive data object model for all entities related to Aurelius Atlas and a set of functions to facilitate communication with the Aurelius Atlas API.
+
 With this library, you can easily create, retrieve, and manage Atlas entities, enabling a seamless integration with the Aurelius Atlas Data Governance solution.
 
 In this `README`, you will find detailed instructions on how to install, configure, and use the M4I Atlas Core library to simplify your work with the Aurelius Atlas platform.
+
+- [M4I Atlas Core](#m4i-atlas-core)
+  - [Features](#features)
+  - [Installation](#installation)
+    - [Using the Dev Container](#using-the-dev-container)
+      - [Using the Dev Container with Visual Studio Code](#using-the-dev-container-with-visual-studio-code)
+      - [Using the Dev Container with GitHub Codespaces](#using-the-dev-container-with-github-codespaces)
+    - [Local installation](#local-installation)
+  - [How to use](#how-to-use)
+    - [Overview of Submodules](#overview-of-submodules)
+    - [Configuration Options](#configuration-options)
+    - [Example Scripts](#example-scripts)
+  - [Testing](#testing)
+
+## Features
+
+The M4I Atlas Core library offers a comprehensive set of features designed to simplify your interactions with the Aurelius Atlas platform. The main features of the library include:
+
+- A rich data object model for all entities related to Aurelius Atlas
+- A set of API functions to facilitate communication with the Apache Atlas API
+- A centralized configuration store for managing settings and credentials
 
 ## Installation
 
@@ -70,9 +93,20 @@ pip install -e .[dev] --user
 
 This section provides an overview of how to use the M4I Atlas Core library, including configuration options and example scripts to help you get started.
 
+### Overview of Submodules
+
+The M4I Atlas Core library consists of several submodules to help you efficiently interact with the Aurelius Atlas platform. Each submodule serves a specific purpose and contains related functionality. Below is a brief description of each submodule:
+
+- [`api`](./m4i_atlas_core/api/README.md): This submodule provides a set of functions that facilitate communication with the Apache Atlas API. It includes functions for creating, retrieving, updating, and deleting entities, as well as handling relationships, classifications, and other aspects of the Aurelius Atlas platform.
+
+- [`config`](./m4i_atlas_core/config/README.md): This submodule includes the `ConfigStore` class, which is responsible for managing configuration settings for the library. It allows you to store, access, and update the configuration settings required to interact with the Atlas API.
+
+- [`entities`](./m4i_atlas_core/entities/atlas/README.md): This submodule contains the data objects related to the Apache Atlas API and the Aurelius Atlas metamodel.
+
 ### Configuration Options
 
 Before you begin using any functions from the library, you will need to configure certain parameters and credentials for Atlas.
+
 In the scripts directory, make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py`, respectively.
 Set the configuration parameters and credentials for Atlas as needed.
 
@@ -80,26 +114,9 @@ Set the configuration parameters and credentials for Atlas as needed.
 
 | Name                       | Required | Description                                                                                 |
 | -------------------------- | -------- | ------------------------------------------------------------------------------------------- |
-| atlas.server.url           | True     | The Server Url that Atlas runs on, with '/api/atlas' post fix.                              |
+| atlas.server.url           | True     | The Server Url that Atlas runs on, with `/api/atlas` post fix.                              |
 | atlas.credentials.username | True     | The Username to be used to access the Atlas Instance.                                       |
 | atlas.credentials.password | True     | The Password to be used to access the Atlas Instance must correspond to the Username given. |
-
-#### Using the ConfigStore
-
-The M4I Atlas Core library utilizes a central configuration store, `ConfigStore`, which is accessed by various built-in functions. The `ConfigStore` can be initialized in different ways to suit your specific use case. In the example scripts provided with the library, the `ConfigStore` is initialized as follows:
-
-```python
-from config import config
-from credentials import credentials
-
-from m4i_atlas_core import ConfigStore
-
-store = ConfigStore.get_instance()
-store.load({
-   **config,
-   **credentials
-})
-```
 
 [Please find more detailed documentation about `ConfigStore` here.](./m4i_atlas_core/config/README.md)
 
