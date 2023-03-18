@@ -17,7 +17,10 @@ In this `README`, you will find detailed instructions on how to install, configu
     - [Local installation](#local-installation)
   - [How to use](#how-to-use)
     - [Overview of Submodules](#overview-of-submodules)
-    - [Configuration Options](#configuration-options)
+    - [Authentication](#authentication)
+    - [Configuration](#configuration)
+      - [Keyloak authentication](#keyloak-authentication)
+      - [Atlas authentication](#atlas-authentication)
     - [Example Scripts](#example-scripts)
   - [Testing](#testing)
 
@@ -103,7 +106,23 @@ The M4I Atlas Core library consists of several submodules to help you efficientl
 
 - [`entities`](./m4i_atlas_core/entities/atlas/README.md): This submodule contains the data objects related to the Apache Atlas API and the Aurelius Atlas metamodel.
 
-### Configuration Options
+### Authentication
+
+All Aurelius Atlas API endpoints are protected through Keycloak, which requires a valid authentication token for every request. The [`api`](./m4i_atlas_core/api/README.md) module includes functions for retrieving an authentication token from Keycloak. When using API functions, you should pass the authentication token through the `access_token` parameter.
+
+Here's an example of how to authenticate an API request:
+
+```python
+from m4i_atlas_core import get_entity_by_guid, get_keycloak_token
+
+access_token = get_keycloak_token()
+
+entity = await get_entity_by_guid('1234', access_token=access_token)
+```
+
+Refer to the [Configuration](#configuration) section for details on setting up the required parameters for Keycloak authentication.
+
+### Configuration
 
 Before you begin using any functions from the library, you will need to configure certain parameters and credentials for Atlas.
 
@@ -112,13 +131,33 @@ Set the configuration parameters and credentials for Atlas as needed.
 
 > **Note**: When using the Dev Container, the sample files are copied for you automatically. However, you will still have to set the configuration parameters yourself.
 
-| Name                       | Required | Description                                                                                 |
-| -------------------------- | -------- | ------------------------------------------------------------------------------------------- |
-| atlas.server.url           | True     | The Server Url that Atlas runs on, with `/api/atlas` post fix.                              |
-| atlas.credentials.username | True     | The Username to be used to access the Atlas Instance.                                       |
-| atlas.credentials.password | True     | The Password to be used to access the Atlas Instance must correspond to the Username given. |
+| Name                       | Required | Description                                                                             |
+| -------------------------- | -------- | --------------------------------------------------------------------------------------- |
+| atlas.server.url           | True     | The base url for the Apache Atlas API. E.g. `https://www.aurelius-atlas.com/api/atlas`. |
 
-[Please find more detailed documentation about `ConfigStore` here.](./m4i_atlas_core/config/README.md)
+All configuration parameters should to be loaded into the `ConfigStore` on application startup. [Find more detailed documentation about the `ConfigStore` here.](./m4i_atlas_core/config/README.md)
+
+#### Keyloak authentication
+
+When using the default Keycloak authentication, the following additional configuration parameters should be provided:
+
+| Name                            | Required | Description                                                                 |
+|---------------------------------|----------|-----------------------------------------------------------------------------|
+| `keycloak.server.url`           | True     | The url of the Keycloak server. E.g. `https://www.aurelius-atlas.com/auth`. |
+| `keycloak.client.id`            | True     | The name of the Keycloak client.                                            |
+| `keycloak.realm.name`           | True     | The name of the Keycloak realm.                                             |
+| `keycloak.client.secret.key`    | True     | The public RS256 key associated with the Keycloak realm.                    |
+| `keycloak.credentials.username` | False    | The username of the Keycloak user.                                          |
+| `keycloak.credentials.password` | False    | The password of the Keycloak user.                                          |
+
+#### Atlas authentication
+
+When Keycloak authentication is disabled, the default Apache Atlas user management system authenticates all requests. In this case, set the following additional configuration parameters:
+
+| Name                       | Required | Description                                                              |
+| -------------------------- | -------- | ------------------------------- |
+| atlas.credentials.username | True     | Your username for Apache Atlas. |
+| atlas.credentials.password | True     | Your password for Apache Atlas. |
 
 ### Example Scripts
 

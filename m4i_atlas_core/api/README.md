@@ -560,7 +560,7 @@ access_token = get_keycloak_token(totp="123456")
 
 The `access_token` can then be used to authenticate requests to the Apache Atlas API.
 
-### ConfigStore
+### Configuration
 
 The `get_keycloak_token` function relies on the following values from the `ConfigStore`:
 
