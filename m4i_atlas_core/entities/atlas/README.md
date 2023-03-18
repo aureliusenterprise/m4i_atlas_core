@@ -8,6 +8,7 @@ This section provides an overview of how to use the data object model provided i
     - [Submodules](#submodules)
     - [Serialization and deserialization](#serialization-and-deserialization)
       - [From JSON to Instance](#from-json-to-instance)
+        - [Unmapped attributes](#unmapped-attributes)
       - [From Instance to JSON](#from-instance-to-json)
     - [Marshmallow Schema](#marshmallow-schema)
       - [Data Validation](#data-validation)
@@ -53,7 +54,9 @@ Suppose you have the following JSON representation of an entity:
 
 ```json
 {
-  "attributes": { "key": "value" },
+  "attributes": {
+    "key": "value"
+  },
   "created_by": "user",
   "guid": "12345"
 }
@@ -67,6 +70,18 @@ from m4i_atlas_core import Entity
 json_data = '''JSON string here'''
 entity_instance = Entity.from_json(json_data)
 ```
+
+##### Unmapped attributes
+
+In the given example, the `key` attribute is not explicitly defined as part of the schema for `Entity`. In such cases, the attributes field of the resulting Entity instance will include an `unmapped_attributes` field. This field offers flexibility when working with entities containing additional or custom attributes not specified in the predefined data model. The `unmapped_attributes` field acts as a catch-all for these attributes, ensuring they are preserved during the conversion process between JSON and the `Entity` instance.
+
+To access an unmapped attribute, you can use the following code:
+
+```python
+value = entity_instance.attributes.unmapped_attributes["key"]
+```
+
+When converting the `Entity` instance back to JSON, any unmapped attributes will be included as part of the `attributes` field once again.
 
 #### From Instance to JSON
 
