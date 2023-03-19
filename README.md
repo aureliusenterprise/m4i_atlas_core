@@ -154,10 +154,10 @@ When using the default Keycloak authentication, the following additional configu
 
 When Keycloak authentication is disabled, the default Apache Atlas user management system authenticates all requests. In this case, set the following additional configuration parameters:
 
-| Name                       | Required | Description                                                              |
-| -------------------------- | -------- | ------------------------------- |
-| atlas.credentials.username | True     | Your username for Apache Atlas. |
-| atlas.credentials.password | True     | Your password for Apache Atlas. |
+| Name                         | Required | Description                                                              |
+| ---------------------------- | -------- | ------------------------------- |
+| `atlas.credentials.username` | True     | Your username for Apache Atlas. |
+| `atlas.credentials.password` | True     | Your password for Apache Atlas. |
 
 ### Example Scripts
 
