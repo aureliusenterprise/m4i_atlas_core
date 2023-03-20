@@ -1,5 +1,7 @@
+#!/bin/bash
+
 # Install the package including all development dependencies
-pip install -e .[dev] --user
+pip install --user -e .[dev] 
 
 # Copy the config sample file
 cp "./scripts/config.sample.py" "./scripts/config.py"
