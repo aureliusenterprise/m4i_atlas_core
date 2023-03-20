@@ -55,9 +55,9 @@ Suppose you have the following JSON representation of an entity:
 ```json
 {
   "attributes": {
-    "qualifiedName": "data-domain--example",
+    "key": "value",
     "name": "example",
-    "key": "value"
+    "qualifiedName": "data-domain--example"
   },
   "guid": "12345"
 }
