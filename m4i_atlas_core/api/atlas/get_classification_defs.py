@@ -9,7 +9,7 @@ PATH = "v2/types/classificationdef/name/"
 
 
 @cached()
-async def get_classification_def(type_name:str, access_token: Optional[str] = None):
+async def get_classification_def(type_name: str, access_token: Optional[str] = None):
 
     response: str = await atlas_get(PATH+type_name, access_token=access_token)
 
