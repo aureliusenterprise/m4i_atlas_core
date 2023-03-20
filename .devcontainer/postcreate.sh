@@ -5,4 +5,4 @@ pip install -e .[dev] --user
 cp ./scripts/config.sample.py ./scripts/config.py
 
 # Copy the credentials sample file
-cp ./scripts/credentials
+cp ./scripts/credentials ./scripts/credentials.py
