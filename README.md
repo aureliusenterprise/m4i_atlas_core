@@ -16,7 +16,7 @@ In this `README`, you will find detailed instructions on how to install, configu
       - [Using the Dev Container with GitHub Codespaces](#using-the-dev-container-with-github-codespaces)
     - [Local installation](#local-installation)
   - [How to use](#how-to-use)
-    - [Overview of Submodules](#overview-of-submodules)
+    - [Submodules](#submodules)
     - [Authentication](#authentication)
     - [Configuration](#configuration)
       - [Keyloak authentication](#keyloak-authentication)
@@ -96,7 +96,7 @@ pip install -e .[dev] --user
 
 This section provides an overview of how to use the M4I Atlas Core library, including configuration options and example scripts to help you get started.
 
-### Overview of Submodules
+### Submodules
 
 The M4I Atlas Core library consists of several submodules to help you efficiently interact with the Aurelius Atlas platform. Each submodule serves a specific purpose and contains related functionality. Below is a brief description of each submodule:
 

@@ -44,13 +44,13 @@ The `entities` module is organized into two main submodules:
 
 Each data object is a `dataclass` and is designed to be easily serialized and deserialized using the `dataclasses_json` library. This allows for convenient conversion between JSON and the corresponding data object instances.
 
-The `dataclasses_json` library provides additional features such as camelCase letter conversion and other customizations.
+The `dataclasses_json` library provides additional features such as `camelCase` letter conversion and other customizations.
 
-Below are some examples of how to use a data object, such as `Entity`, to convert between its instance and JSON representation.
+Below are some examples of how to use a data object, such as `BusinessDataDomain`, to convert between its instance and JSON representation.
 
 #### From JSON to Instance
 
-You can convert JSON data to an `Entity` instance using the `from_json()` method. 
+You can convert JSON data to an `Entity` instance using the `from_json()` method.
 Suppose you have the following JSON representation of a data domain:
 
 ```json
