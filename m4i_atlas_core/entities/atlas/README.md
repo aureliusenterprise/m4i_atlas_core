@@ -59,7 +59,8 @@ Suppose you have the following JSON representation of an entity:
     "name": "example",
     "qualifiedName": "data-domain--example"
   },
-  "guid": "12345"
+  "guid": "12345",
+  "typeName": "m4i_data_domain"
 }
 ```
 
