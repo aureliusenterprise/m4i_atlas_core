@@ -88,13 +88,14 @@ When converting any `Entity` instance back to JSON, the unmapped attributes will
 
 #### From Instance to JSON
 
-To convert an Entity instance back to its JSON representation, you can use the following code:
+To convert an `Entity` instance back to its JSON representation, use the `to_json()` method. 
+The example below shows how to convert the `BusinessDataDomain` instance we created previously back to its JSON representation:
 
 ```python
 json_data = domain_instance.to_json()
 ```
 
-This will return a JSON string that represents the Entity instance.
+This will return a JSON string that represents the data domain instance, including any unmapped attributes.
 
 ### Marshmallow Schema
 
