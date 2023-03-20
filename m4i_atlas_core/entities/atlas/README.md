@@ -55,40 +55,42 @@ Suppose you have the following JSON representation of an entity:
 ```json
 {
   "attributes": {
+    "qualified_name": "data-domain--example",
+    "name": "example",
     "key": "value"
   },
-  "created_by": "user",
   "guid": "12345"
 }
 ```
 
-You can convert it to an `Entity` instance using the following code:
+You can convert it to an `Entity` instance using the `from_json` method. 
+The example below demonstrates how to create a `BusinessDataDomain` instance from the given JSON data:
 
 ```python
-from m4i_atlas_core import Entity
+from m4i_atlas_core import BusinessDataDomain
 
 json_data = '''JSON string here'''
-entity_instance = Entity.from_json(json_data)
+domain_instance = BusinessDataDomain.from_json(json_data)
 ```
 
 ##### Unmapped attributes
 
-In the given example, the `key` attribute is not explicitly defined as part of the schema for `Entity`. In such cases, the attributes field of the resulting Entity instance will include an `unmapped_attributes` field. This field offers flexibility when working with entities containing additional or custom attributes not specified in the predefined data model. The `unmapped_attributes` field acts as a catch-all for these attributes, ensuring they are preserved during the conversion process between JSON and the `Entity` instance.
+In the given example, the `key` attribute is not explicitly defined as part of the schema for `BusinessDataDomain`. In such cases, the attributes field of the resulting instance will include an `unmapped_attributes` field. This field offers flexibility when working with entities containing additional or custom attributes not specified in the predefined data model. The `unmapped_attributes` field acts as a catch-all for these attributes, ensuring they are preserved during the conversion process between JSON and the `Entity` instance.
 
 To access an unmapped attribute, you can use the following code:
 
 ```python
-value = entity_instance.attributes.unmapped_attributes["key"]
+value = domain_instance.attributes.unmapped_attributes["key"]
 ```
 
-When converting the `Entity` instance back to JSON, any unmapped attributes will be included as part of the `attributes` field once again.
+When converting any `Entity` instance back to JSON, the unmapped attributes will be included as part of the `attributes` field once again.
 
 #### From Instance to JSON
 
 To convert an Entity instance back to its JSON representation, you can use the following code:
 
 ```python
-json_data = entity_instance.to_json()
+json_data = domain_instance.to_json()
 ```
 
 This will return a JSON string that represents the Entity instance.
