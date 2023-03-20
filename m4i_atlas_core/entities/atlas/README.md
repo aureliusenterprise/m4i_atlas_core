@@ -50,7 +50,8 @@ Below are some examples of how to use a data object, such as `Entity`, to conver
 
 #### From JSON to Instance
 
-You can convert it to an `Entity` instance using the `from_json` method. Suppose you have the following JSON representation of a data domain:
+You can convert JSON data to an `Entity` instance using the `from_json` method. 
+Suppose you have the following JSON representation of a data domain:
 
 ```json
 {
