@@ -13,6 +13,7 @@
     "vscode": {
       // Set *default* container specific settings.json values on container create.
       "settings": {
+        "files.eol": "\n",
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
