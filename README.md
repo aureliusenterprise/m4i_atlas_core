@@ -131,9 +131,9 @@ Set the configuration parameters and credentials for Atlas as needed.
 
 > **Note**: When using the Dev Container, the sample files are copied for you automatically. However, you will still have to set the configuration parameters yourself.
 
-| Name                       | Required | Description                                                                             |
-| -------------------------- | -------- | --------------------------------------------------------------------------------------- |
-| atlas.server.url           | True     | The base url for the Apache Atlas API. E.g. `https://www.aurelius-atlas.com/api/atlas`. |
+| Name                         | Required | Description                                                                             |
+| ---------------------------- | -------- | --------------------------------------------------------------------------------------- |
+| `atlas.server.url`           | True     | The base url for the Apache Atlas API. E.g. `https://www.aurelius-atlas.com/api/atlas`. |
 
 All configuration parameters should to be loaded into the `ConfigStore` on application startup. [Find more detailed documentation about the `ConfigStore` here.](./m4i_atlas_core/config/README.md)
 
