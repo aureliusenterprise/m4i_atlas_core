@@ -28,11 +28,10 @@ This README provides documentation for the M4I Atlas Core `api` module, which is
       - [`get_type_def`](#get_type_def)
       - [`get_type_defs`](#get_type_defs)
       - [`update_type_defs`](#update_type_defs)
-    - [Interacting with the cache](#interacting-with-the-cache)
-      - [Clearing the cache](#clearing-the-cache)
+    - [Working with the cache](#working-with-the-cache)
   - [Auth](#auth)
     - [Usage](#usage)
-    - [ConfigStore](#configstore)
+    - [Configuration](#configuration)
 
 ## Features
 
@@ -61,9 +60,11 @@ The API module is divided into two submodules:
 
 ### Atlas
 
-The `atlas` submodule provides a collection of functions to interact with the Apache Atlas API. These functions allow you to create, retrieve, update, and delete various entities, types, and glossaries in Apache Atlas.
+The `atlas` submodule provides a collection of functions to interact with the Apache Atlas API. These functions enable you to create, retrieve, update, and delete various entities, types, and glossaries in Apache Atlas.
 
-The next sections include examples on how to use each API function.
+The API functions make extensive use of the [data object model](../entities/atlas/README.md) included with this library, which corresponds to the data object model for the Apache Atlas API. You can find the official Apache Atlas API documentation at [this link](https://atlas.apache.org/api/v2/index.html).
+
+The following sections include examples demonstrating how to use each API function.
 
 #### `create_entities`
 
@@ -509,31 +510,47 @@ print(updated_type_defs)
 
 This example updates an existing entity definition with the given types parameter in Apache Atlas. The `update_type_defs` function returns a `TypesDef` object containing the details of the type definitions that were successfully updated.
 
-### Interacting with the cache
+### Working with the cache
 
-Some of the API functions are cached through the `aiocache` library. This can be useful when the same API calls are made multiple times, saving time and reducing the load on the server.
+The library utilizes the [`aiocache`](https://aiocache.aio-libs.org/en/latest/) library to cache some API function results. Caching can help reduce server load and improve performance by reusing the results from previous API calls with the same parameters.
 
-You can access the cache for any API function through the `cache` property. Here's an example of how to access the cache for the `get_entity_by_guid` function:
+When you call a cached API function, the cache is automatically checked for the result. If the result is present in the cache, it is returned instead of making a new API call.
 
 ```python
 from m4i_atlas_core import get_entity_by_guid
 
+# Call the function once, making an API call
+await get_entity_by_guid("12345")
+
+# Call the function again, returning the result from the cache
+await get_entity_by_guid("12345")
+
+# Bypass the cache and make a direct API call
+await get_entity_by_guid("12345", cache_read=False)
+```
+
+You can interact with the cache for any API function using the `cache` property. The following examples demonstrate how to access and manipulate the cache for the `get_entity_by_guid` function:
+
+```python
+from m4i_atlas_core import get_entity_by_guid
+
+# Access the cache for the get_entity_by_guid function
 cache = get_entity_by_guid.cache
+
+# Delete an item from the cache
+await cache.delete("12345")
+
+# Clear the entire cache
+await cache.clear()
 ```
 
-#### Clearing the cache
-
-If you want to clear the cache for a specific function, you can call the `clear` method on the cache decorator. Here's an example of how to clear the cache for the `get_entity_by_guid` function:
-
-```python
-from m4i_atlas_core import get_entity_by_guid
-
-await get_entity_by_guid.cache.clear()
-```
+These cache management options enable you to control and optimize the caching behavior of your library, tailoring it to your specific use case.
 
 ## Auth
 
 The `auth` submodule provides functionality for retrieving authentication tokens from Keycloak, which are required for accessing the Apache Atlas API.
+
+> **Note**: This module is specifically designed for use with Keycloak authentication. When Apache Atlas is configured with basic authentication, obtaining access tokens is not required. Instead, set a username and password in the `ConfigStore` for authentication.
 
 ### Usage
 
@@ -545,7 +562,7 @@ To use the `get_keycloak_token` function, first import it:
 from m4i_atlas_core import get_keycloak_token
 ```
 
-Next, call the function to retrieve an access token. You can provide your own Keycloak instance and credentials or rely on the pre-configured parameters from the `ConfigStore`. If you need to use multi-factor authentication, provide the one-time access token (TOTP) as well.
+Next, call the function to retrieve an access token. You can provide your own Keycloak instance and credentials or rely on the pre-configured parameters from the `ConfigStore` as described in the [configuration](#configuration) section. If you need to use multi-factor authentication, provide the one-time access token (TOTP) as well.
 
 ```python
 # Example: Using pre-configured parameters
@@ -559,6 +576,8 @@ access_token = get_keycloak_token(totp="123456")
 ```
 
 The `access_token` can then be used to authenticate requests to the Apache Atlas API.
+
+> **Note**: Tokens obtained from Keycloak have a limited lifespan. Once a token expires, you will need to obtain a new access token to continue making authenticated requests.
 
 ### Configuration
 

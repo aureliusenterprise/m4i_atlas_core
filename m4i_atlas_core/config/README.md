@@ -60,7 +60,7 @@ store.set_many(key1="value1", key2="value2", key3="value3")
 
 ### Retrieving Configuration Settings
 
-To retrieve a configuration setting, use the get method:
+To retrieve a configuration setting, use the `get` method. If the key is not present in the `ConfigStore`, it returns `None` by default.
 
 ```python
 value = store.get("key")

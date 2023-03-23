@@ -131,9 +131,9 @@ Set the configuration parameters and credentials for Atlas as needed.
 
 > **Note**: When using the Dev Container, the sample files are copied for you automatically. However, you will still have to set the configuration parameters yourself.
 
-| Name                         | Required | Description                                                                             |
-| ---------------------------- | -------- | --------------------------------------------------------------------------------------- |
-| `atlas.server.url`           | True     | The base url for the Apache Atlas API. E.g. `https://www.aurelius-atlas.com/api/atlas`. |
+| Name               | Required | Description                                                                             |
+| ------------------ | -------- | --------------------------------------------------------------------------------------- |
+| `atlas.server.url` | True     | The base url for the Apache Atlas API. E.g. `https://www.aurelius-atlas.com/api/atlas`. |
 
 All configuration parameters should to be loaded into the `ConfigStore` on application startup. [Find more detailed documentation about the `ConfigStore` here.](./m4i_atlas_core/config/README.md)
 
@@ -142,19 +142,20 @@ All configuration parameters should to be loaded into the `ConfigStore` on appli
 When using the default Keycloak authentication, the following additional configuration parameters should be provided:
 
 | Name                            | Required | Description                                                                 |
-|---------------------------------|----------|-----------------------------------------------------------------------------|
+| ------------------------------- | -------- | --------------------------------------------------------------------------- |
 | `keycloak.server.url`           | True     | The url of the Keycloak server. E.g. `https://www.aurelius-atlas.com/auth`. |
 | `keycloak.client.id`            | True     | The name of the Keycloak client.                                            |
-| `keycloak.realm.name`           | True     | The name of the Keycloak realm.                                             |
+| `keycloak.realm.name`           | True     | The name of the Keycloak realm. The default realm name is `m4i`.            |
 | `keycloak.client.secret.key`    | True     | The public RS256 key associated with the Keycloak realm.                    |
-| `keycloak.credentials.username` | False    | The username of the Keycloak user.                                          |
+| `keycloak.credentials.username` | False    | The username of the Keycloak user.                                         |
 | `keycloak.credentials.password` | False    | The password of the Keycloak user.                                          |
+> **Note**: Keycloak credentials for built-in Aurelius Atlas users are automatically generated upon deployment and are available from the deployment log.
 
 #### Atlas authentication
 
 When Keycloak authentication is disabled, the default Apache Atlas user management system authenticates all requests. In this case, set the following additional configuration parameters:
 
-| Name                         | Required | Description                                                              |
+| Name                         | Required | Description                     |
 | ---------------------------- | -------- | ------------------------------- |
 | `atlas.credentials.username` | True     | Your username for Apache Atlas. |
 | `atlas.credentials.password` | True     | Your password for Apache Atlas. |

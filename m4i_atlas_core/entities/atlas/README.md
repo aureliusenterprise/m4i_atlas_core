@@ -1,6 +1,6 @@
 # Data Object Model
 
-This section provides an overview of how to use the data object model provided in the library. The data objects are designed to represent different types of entities, attributes, classifications, and other components in Aurelius Atlas.
+This section provides an overview of how to use the data object model provided in the library. The data objects are designed to represent various types of entities, attributes, classifications, and other components in Aurelius Atlas. They are used extensively when interacting with the Atlas API.
 
 - [Data Object Model](#data-object-model)
   - [Features](#features)
@@ -42,7 +42,7 @@ The `entities` module is organized into two main submodules:
 
 ### Serialization and deserialization
 
-Each data object is a `dataclass` and is designed to be easily serialized and deserialized using the `dataclasses_json` library. This allows for convenient conversion between JSON and the corresponding data object instances.
+Each data object is a [`dataclass`](https://docs.python.org/3/library/dataclasses.html) and is designed to be easily serialized and deserialized using the [`dataclasses_json`](https://lidatong.github.io/dataclasses-json/) library. This allows for convenient conversion between JSON and the corresponding data object instances.
 
 The `dataclasses_json` library provides additional features such as `camelCase` letter conversion and other customizations.
 
@@ -136,7 +136,7 @@ else:
 
 In this example, the `Entity` data object from the library is used to validate the `input_data` JSON using its associated Marshmallow schema. If the data is valid, the `validate` method will not return any errors, and the "Data is valid" message will be displayed. If the data is invalid, a dictionary containing the validation errors will be returned.
 
-This approach can be applied to other data objects in the library for validating JSON input data using their respective Marshmallow schemas.
+This approach can be applied to other data objects in the library for validating JSON input data using their respective Marshmallow schemas. To read more about data validation with Marshmallow, refer to [the official documentation](https://marshmallow.readthedocs.io/en/stable/quickstart.html#validation).
 
 #### Bulk Serialization and Deserialization
 
