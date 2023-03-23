@@ -117,7 +117,7 @@ from m4i_atlas_core import get_entity_by_guid, get_keycloak_token
 
 access_token = get_keycloak_token()
 
-entity = await get_entity_by_guid('1234', access_token=access_token)
+entity = await get_entity_by_guid("1234", access_token=access_token)
 ```
 
 Refer to the [Configuration](#configuration) section for details on setting up the required parameters for Keycloak authentication.
@@ -126,8 +126,7 @@ Refer to the [Configuration](#configuration) section for details on setting up t
 
 Before you begin using any functions from the library, you will need to configure certain parameters and credentials for Atlas.
 
-In the scripts directory, make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py`, respectively.
-Set the configuration parameters and credentials for Atlas as needed.
+In the scripts directory, make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py`, respectively. Set the configuration parameters and credentials for Atlas as needed.
 
 > **Note**: When using the Dev Container, the sample files are copied for you automatically. However, you will still have to set the configuration parameters yourself.
 
@@ -144,21 +143,22 @@ When using the default Keycloak authentication, the following additional configu
 | Name                            | Required | Description                                                                 |
 | ------------------------------- | -------- | --------------------------------------------------------------------------- |
 | `keycloak.server.url`           | True     | The url of the Keycloak server. E.g. `https://www.aurelius-atlas.com/auth`. |
-| `keycloak.client.id`            | True     | The name of the Keycloak client.                                            |
+| `keycloak.client.id`            | True     | The name of the Keycloak client. The default client id is `m4i_atlas`.      |
 | `keycloak.realm.name`           | True     | The name of the Keycloak realm. The default realm name is `m4i`.            |
 | `keycloak.client.secret.key`    | True     | The public RS256 key associated with the Keycloak realm.                    |
-| `keycloak.credentials.username` | False    | The username of the Keycloak user.                                         |
+| `keycloak.credentials.username` | False    | The username of the Keycloak user. The built-in username is `atlas`.        |
 | `keycloak.credentials.password` | False    | The password of the Keycloak user.                                          |
+
 > **Note**: Keycloak credentials for built-in Aurelius Atlas users are automatically generated upon deployment and are available from the deployment log.
 
 #### Atlas authentication
 
 When Keycloak authentication is disabled, the default Apache Atlas user management system authenticates all requests. In this case, set the following additional configuration parameters:
 
-| Name                         | Required | Description                     |
-| ---------------------------- | -------- | ------------------------------- |
-| `atlas.credentials.username` | True     | Your username for Apache Atlas. |
-| `atlas.credentials.password` | True     | Your password for Apache Atlas. |
+| Name                         | Required | Description                                                       |
+| ---------------------------- | -------- | ----------------------------------------------------------------- |
+| `atlas.credentials.username` | True     | Your username for Apache Atlas. The built-in username is `atlas`. |
+| `atlas.credentials.password` | True     | Your password for Apache Atlas.                                   |
 
 ### Example Scripts
 
