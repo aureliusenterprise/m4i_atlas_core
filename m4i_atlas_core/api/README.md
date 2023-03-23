@@ -544,7 +544,7 @@ await cache.delete("12345")
 await cache.clear()
 ```
 
-These cache management options enable you to control and optimize the caching behavior of your library, tailoring it to your specific use case.
+These cache management options enable you to control and optimize the caching behavior of your application, tailoring it to your specific use case.
 
 ## Auth
 
