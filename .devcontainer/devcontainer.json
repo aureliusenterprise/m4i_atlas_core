@@ -13,6 +13,7 @@
     "vscode": {
       // Set *default* container specific settings.json values on container create.
       "settings": {
+        "files.eol": "\n",
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
@@ -30,15 +31,16 @@
 
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
-        "EditorConfig.EditorConfig",
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "ms-python.pylint",
-        "ms-python.isort",
-        "ms-azuretools.vscode-docker",
-        "eamodio.gitlens",
-        "DavidAnson.vscode-markdownlint"
-      ]
+		"EditorConfig.EditorConfig",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"ms-python.pylint",
+		"ms-python.isort",
+		"ms-azuretools.vscode-docker",
+		"eamodio.gitlens",
+		"DavidAnson.vscode-markdownlint",
+		"yzhang.markdown-all-in-one"
+	]
     }
   },
 

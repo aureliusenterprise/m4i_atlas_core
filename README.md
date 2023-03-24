@@ -1,15 +1,36 @@
 # M4I Atlas Core
 
-This library contains all core functionality for connecting to atlas, defining type definitions, and their respective type class used to create and get atlas entities.
+Welcome to the M4I Atlas Core library!
 
-To push atlas entities of a certain type, the type must be defined in atlas and the request must be of a certain format.
-The type definitions can be found in their respective file under `m4i_atlas_core/entities/atlas` along with their atlas class that formats requests into the correct shape to send to the atlas api.
-The library currently holds type definitions that are used in the Aurelius Governance solution and are available here in 4 sets of definitions.
+This library is designed to streamline your interactions with Aurelius Atlas, providing a comprehensive data object model for all entities related to Aurelius Atlas and a set of functions to facilitate communication with the Aurelius Atlas API.
 
-The following type definitions sets are available :
-`data_dictionary_types_def, process_types_def, connectors_types_def and kubernetes_types_def.`
+With this library, you can easily create, retrieve, and manage Atlas entities, enabling a seamless integration with the Aurelius Atlas Data Governance solution.
 
-For more detail on this please look at the Atlas Type documentation.
+In this `README`, you will find detailed instructions on how to install, configure, and use the M4I Atlas Core library to simplify your work with the Aurelius Atlas platform.
+
+- [M4I Atlas Core](#m4i-atlas-core)
+  - [Features](#features)
+  - [Installation](#installation)
+    - [Using the Dev Container](#using-the-dev-container)
+      - [Using the Dev Container with Visual Studio Code](#using-the-dev-container-with-visual-studio-code)
+      - [Using the Dev Container with GitHub Codespaces](#using-the-dev-container-with-github-codespaces)
+    - [Local installation](#local-installation)
+  - [How to use](#how-to-use)
+    - [Submodules](#submodules)
+    - [Authentication](#authentication)
+    - [Configuration](#configuration)
+      - [Keyloak authentication](#keyloak-authentication)
+      - [Atlas authentication](#atlas-authentication)
+    - [Example Scripts](#example-scripts)
+  - [Testing](#testing)
+
+## Features
+
+The M4I Atlas Core library offers a comprehensive set of features designed to simplify your interactions with the Aurelius Atlas platform. The main features of the library include:
+
+- A rich data object model for all entities related to Aurelius Atlas
+- A set of API functions to facilitate communication with the Apache Atlas API
+- A centralized configuration store for managing settings and credentials
 
 ## Installation
 
@@ -71,26 +92,79 @@ To install the project including development dependencies, please run the follow
 pip install -e .[dev] --user
 ```
 
-## Configurations and Credentials
+## How to use
 
-In the `scripts` directory.
-Please make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py` respectively.
-Please set the configuration parameters and credentials for `atlas`.
+This section provides an overview of how to use the M4I Atlas Core library, including configuration options and example scripts to help you get started.
 
-| Name                       | Required | Description                                                                                 |
-| -------------------------- | -------- | ------------------------------------------------------------------------------------------- |
-| atlas.server.url           | True     | The Server Url that Atlas runs on, with '/api/atlas' post fix.                              |
-| data.dictionary.path       | False    | The Path to the Data Dictionary to be loaded.                                               |
-| atlas.credentials.username | True     | The Username to be used to access the Atlas Instance.                                       |
-| atlas.credentials.password | True     | The Password to be used to access the Atlas Instance must correspond to the Username given. |
+### Submodules
 
-## Execution
+The M4I Atlas Core library consists of several submodules to help you efficiently interact with the Aurelius Atlas platform. Each submodule serves a specific purpose and contains related functionality. Below is a brief description of each submodule:
 
-1. Create the Python Environment. How to do this can be found in this file under `Installation`
-2. Fill in the Configurations and Credentials as indicated in this file under `Configurations and Credentials`
-3. Run `scripts\load_type_defs.py` in the terminal to load the definitions.
-   The main function in `load_type_defs.py` can be adjusted to determine which set of type definitions to load.
-   Please note that if a subset of the set already exist, then the loading of the type definitions will fail.
+- [`api`](./m4i_atlas_core/api/README.md): This submodule provides a set of functions that facilitate communication with the Apache Atlas API. It includes functions for creating, retrieving, updating, and deleting entities, as well as handling relationships, classifications, and other aspects of the Aurelius Atlas platform.
+
+- [`config`](./m4i_atlas_core/config/README.md): This submodule includes the `ConfigStore` class, which is responsible for managing configuration settings for the library. It allows you to store, access, and update the configuration settings required to interact with the Atlas API.
+
+- [`entities`](./m4i_atlas_core/entities/atlas/README.md): This submodule contains the data objects related to the Apache Atlas API and the Aurelius Atlas metamodel.
+
+### Authentication
+
+All Aurelius Atlas API endpoints are protected through Keycloak, which requires a valid authentication token for every request. The [`api`](./m4i_atlas_core/api/README.md) module includes functions for retrieving an authentication token from Keycloak. When using API functions, you should pass the authentication token through the `access_token` parameter.
+
+Here's an example of how to authenticate an API request:
+
+```python
+from m4i_atlas_core import get_entity_by_guid, get_keycloak_token
+
+access_token = get_keycloak_token()
+
+entity = await get_entity_by_guid("1234", access_token=access_token)
+```
+
+Refer to the [Configuration](#configuration) section for details on setting up the required parameters for Keycloak authentication.
+
+### Configuration
+
+Before you begin using any functions from the library, you will need to configure certain parameters and credentials for Atlas.
+
+In the scripts directory, make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py`, respectively. Set the configuration parameters and credentials for Atlas as needed.
+
+> **Note**: When using the Dev Container, the sample files are copied for you automatically. However, you will still have to set the configuration parameters yourself.
+
+| Name               | Required | Description                                                                             |
+| ------------------ | -------- | --------------------------------------------------------------------------------------- |
+| `atlas.server.url` | True     | The base url for the Apache Atlas API. E.g. `https://www.aurelius-atlas.com/api/atlas`. |
+
+All configuration parameters should to be loaded into the `ConfigStore` on application startup. [Find more detailed documentation about the `ConfigStore` here.](./m4i_atlas_core/config/README.md)
+
+#### Keyloak authentication
+
+When using the default Keycloak authentication, the following additional configuration parameters should be provided:
+
+| Name                            | Required | Description                                                                 |
+| ------------------------------- | -------- | --------------------------------------------------------------------------- |
+| `keycloak.server.url`           | True     | The url of the Keycloak server. E.g. `https://www.aurelius-atlas.com/auth`. |
+| `keycloak.client.id`            | True     | The name of the Keycloak client. The default client id is `m4i_atlas`.      |
+| `keycloak.realm.name`           | True     | The name of the Keycloak realm. The default realm name is `m4i`.            |
+| `keycloak.client.secret.key`    | True     | The public RS256 key associated with the Keycloak realm.                    |
+| `keycloak.credentials.username` | False    | The username of the Keycloak user. The built-in username is `atlas`.        |
+| `keycloak.credentials.password` | False    | The password of the Keycloak user.                                          |
+
+> **Note**: Keycloak credentials for built-in Aurelius Atlas users are automatically generated upon deployment and are available from the deployment log.
+
+#### Atlas authentication
+
+When Keycloak authentication is disabled, the default Apache Atlas user management system authenticates all requests. In this case, set the following additional configuration parameters:
+
+| Name                         | Required | Description                                                       |
+| ---------------------------- | -------- | ----------------------------------------------------------------- |
+| `atlas.credentials.username` | True     | Your username for Apache Atlas. The built-in username is `atlas`. |
+| `atlas.credentials.password` | True     | Your password for Apache Atlas.                                   |
+
+### Example Scripts
+
+The library includes example scripts to demonstrate how to interact with the Atlas API using the provided data object models and functions. These scripts can be found in the scripts directory of the project. Below is a brief overview of some example scripts:
+
+- `load_type_defs.py`: This script loads the type definitions into Atlas. The main function in `load_type_defs.py` can be adjusted to determine which set of type definitions to load. Please note that if a subset of the set already exists, the loading of the type definitions will fail.
 
 ## Testing
 

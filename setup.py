@@ -14,9 +14,16 @@ setup(
     ],
     extras_require={
         "dev": [
+            "autodocsumm",
+            "m2r2",
             "pytest",
             "pytest-asyncio",
             "pytest-cov",
+            "recommonmark",
+            "rinohtype",
+            "sphinx",
+            "sphinx_autodoc_typehints",
+            "sphinx_rtd_theme"
         ]
     }
 )
