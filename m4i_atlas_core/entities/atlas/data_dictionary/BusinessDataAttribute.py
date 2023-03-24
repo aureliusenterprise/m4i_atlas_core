@@ -1,11 +1,12 @@
 from dataclasses import dataclass, field
-from typing import Iterable, Optional, List
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
-from ..core import (AttributeDef, Attributes, Entity, EntityBase,
-                    EntityDef, EntityDefaultsBase, ObjectId, PropagateTags,
-                    TypeCategory, RelationshipDef, RelationshipEndDef, Cardinality, ClassificationDef)
 
+from ..core import (AttributeDef, Attributes, Cardinality, ClassificationDef,
+                    Entity, EntityBase, EntityDef, EntityDefaultsBase,
+                    ObjectId, PropagateTags, RelationshipDef,
+                    RelationshipEndDef, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 data_attribute_attributes_def = [
@@ -159,7 +160,8 @@ m4i_steward_attribute_rel_def = RelationshipDef(
 
 m4i_classification_pii = ClassificationDef(
     name="PII",
-    entity_types=["m4i_data_entity", "m4i_data_attribute", "m4i_field", "m4i_dataset", "m4i_collection"],
+    entity_types=["m4i_data_entity", "m4i_data_attribute",
+                  "m4i_field", "m4i_dataset", "m4i_collection"],
     category=TypeCategory.CLASSIFICATION
 )
 m4i_classification_key_data = ClassificationDef(
@@ -169,7 +171,8 @@ m4i_classification_key_data = ClassificationDef(
 )
 m4i_classification_high_risk = ClassificationDef(
     name="high_risk",
-    entity_types=["m4i_data_entity", "m4i_data_attribute", "m4i_field", "m4i_dataset"],
+    entity_types=["m4i_data_entity",
+                  "m4i_data_attribute", "m4i_field", "m4i_dataset"],
     category=TypeCategory.CLASSIFICATION
 )
 m4i_classification_medium_risk = ClassificationDef(
@@ -187,10 +190,7 @@ m4i_classification_low_risk = ClassificationDef(
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class BusinessDataAttributesAttributesBase(M4IAttributesBase):
-    data_entity: List[ObjectId]
     name: str
-
-
 # END BusinessDataAttributesAttributesBase
 
 
@@ -199,14 +199,13 @@ class BusinessDataAttributesAttributesBase(M4IAttributesBase):
 class BusinessDataAttributeAttributesDefaultsBase(Attributes):
     attribute_type: Optional[str] = None
     business_owner: List[ObjectId] = field(default_factory=list)
+    data_entity: List[ObjectId] = field(default_factory=list)
     definition: Optional[str] = None
     has_pii: Optional[str] = None
     is_key_data: Optional[str] = None
     steward: List[ObjectId] = field(default_factory=list)
     risk_classification: Optional[str] = None
-    source: Optional[List[ObjectId]] = None
-
-
+    source: List[ObjectId] = field(default_factory=list)
 # END BusinessDataAttributeAttributesDefaultsBase
 
 
@@ -215,8 +214,6 @@ class BusinessDataAttributeAttributesDefaultsBase(Attributes):
 class BusinessDataAttributeAttributes(BusinessDataAttributeAttributesDefaultsBase,
                                       BusinessDataAttributesAttributesBase):
     pass
-
-
 # END BusinessDataAttributeAttributes
 
 
@@ -224,8 +221,6 @@ class BusinessDataAttributeAttributes(BusinessDataAttributeAttributesDefaultsBas
 @dataclass
 class BusinessDataAttributeBase(EntityBase):
     attributes: BusinessDataAttributeAttributes
-
-
 # END BusinessDataAttributeBase
 
 
@@ -233,14 +228,12 @@ class BusinessDataAttributeBase(EntityBase):
 @dataclass
 class BusinessDataAttributeDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessDataAttributeDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessDataAttribute(Entity, BusinessDataAttributeDefaultsBase, BusinessDataAttributeBase):
+class BusinessDataAttribute(BusinessDataAttributeDefaultsBase, BusinessDataAttributeBase, Entity):
     type_name: str = "m4i_data_attribute"
 
     @classmethod
@@ -257,12 +250,9 @@ class BusinessDataAttribute(Entity, BusinessDataAttributeDefaultsBase, BusinessD
         references = [
             *self.attributes.business_owner,
             *self.attributes.steward,
-            *self.attributes.data_entity
+            *self.attributes.data_entity,
+            *self.attributes.source
         ]
-
-        if self.attributes.source is not None:
-            references = [*references, *self.attributes.source]
-        # END IF
 
         return filter(None, references)
     # END get_referred_entities

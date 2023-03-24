@@ -60,10 +60,10 @@ m4i\_atlas\_core.entities.atlas.connectors.IndexPattern module
    :undoc-members:
    :show-inheritance:
 
-m4i\_atlas\_core.entities.atlas.connectors.KSql module
+m4i\_atlas\_core.entities.atlas.connectors.KSQL module
 ------------------------------------------------------
 
-.. automodule:: m4i_atlas_core.entities.atlas.connectors.KSql
+.. automodule:: m4i_atlas_core.entities.atlas.connectors.KSQL
    :members:
    :undoc-members:
    :show-inheritance:

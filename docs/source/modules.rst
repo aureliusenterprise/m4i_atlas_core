@@ -1,5 +1,5 @@
-m4i_atlas_core
-==============
+workspace
+=========
 
 .. toctree::
    :maxdepth: 4

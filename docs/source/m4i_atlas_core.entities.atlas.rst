@@ -10,6 +10,9 @@ Subpackages
    m4i_atlas_core.entities.atlas.connectors
    m4i_atlas_core.entities.atlas.core
    m4i_atlas_core.entities.atlas.data_dictionary
+   m4i_atlas_core.entities.atlas.kubernetes
+   m4i_atlas_core.entities.atlas.m4i
+   m4i_atlas_core.entities.atlas.processes
 
 Module contents
 ---------------

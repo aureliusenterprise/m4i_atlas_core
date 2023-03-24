@@ -1,10 +1,11 @@
 from dataclasses import dataclass, field
-from typing import Optional, Iterable, List
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
-from ..core import (AttributeDef, Attributes, Entity, EntityBase, ObjectId,
-                    EntityDef, EntityDefaultsBase, TypeCategory, RelationshipDef, RelationshipEndDef, Cardinality)
 
+from ..core import (AttributeDef, Attributes, Cardinality, Entity, EntityBase,
+                    EntityDef, EntityDefaultsBase, ObjectId, RelationshipDef,
+                    RelationshipEndDef, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 atlas_system_attributes_def = [
@@ -82,20 +83,17 @@ m4i_psystem_csystem_rel_def = RelationshipDef(
 @dataclass
 class BusinessSystemAttributesBase(M4IAttributesBase):
     name: str
-
-
 # END BusinessSystemsAttributesBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class BusinessSystemAttributesDefaultsBase(Attributes):
+    collections: List[ObjectId] = field(default_factory=list)
     definition: Optional[str] = None
     parent_system: List[ObjectId] = field(default_factory=list)
     child_system: List[ObjectId] = field(default_factory=list)
     source: List[ObjectId] = field(default_factory=list)
-
-
 # END BusinessSystemAttributesDefaultsBase
 
 
@@ -103,8 +101,6 @@ class BusinessSystemAttributesDefaultsBase(Attributes):
 @dataclass
 class BusinessSystemAttributes(BusinessSystemAttributesDefaultsBase, BusinessSystemAttributesBase):
     pass
-
-
 # END BusinessSystemAttributes
 
 
@@ -112,8 +108,6 @@ class BusinessSystemAttributes(BusinessSystemAttributesDefaultsBase, BusinessSys
 @dataclass
 class BusinessSystemBase(EntityBase):
     attributes: BusinessSystemAttributes
-
-
 # END BusinessSystemBase
 
 
@@ -121,14 +115,12 @@ class BusinessSystemBase(EntityBase):
 @dataclass
 class BusinessSystemDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessSystemDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessSystem(Entity, BusinessSystemDefaultsBase, BusinessSystemBase):
+class BusinessSystem(BusinessSystemDefaultsBase, BusinessSystemBase, Entity):
     type_name: str = "m4i_system"
 
     @classmethod
@@ -140,21 +132,11 @@ class BusinessSystem(Entity, BusinessSystemDefaultsBase, BusinessSystemBase):
         Returns the collection referenced by this dataset
         """
         references = [
-            *self.attributes.collections
+            *self.attributes.collections,
+            *self.attributes.parent_system,
+            *self.attributes.child_system,
+            *self.attributes.source
         ]
 
-        if self.attributes.parent_system is not None:
-            references = [*references, *self.attributes.parent_system]
-        # END IF
-
-        if self.attributes.child_system is not None:
-            references = [*references, *self.attributes.child_system]
-        # END IF
-
-        if self.attributes.source is not None:
-            references = [*references, *self.attributes.source]
-        # END IF
-
         return filter(None, references)
-
 # END BusinessSystem

@@ -104,8 +104,6 @@ m4i_dataset_collection_rel_def = RelationshipDef(
 @dataclass
 class BusinessDatasetAttributesBase(M4IAttributesBase):
     name: str
-
-
 # END BusinessDatasetsAttributesBase
 
 
@@ -118,8 +116,6 @@ class BusinessDatasetAttributesDefaultsBase(Attributes):
     child_dataset: List[ObjectId] = field(default_factory=list)
     fields: List[ObjectId] = field(default_factory=list)
     source: List[ObjectId] = field(default_factory=list)
-
-
 # END BusinessDatasetAttributesDefaultsBase
 
 
@@ -127,8 +123,6 @@ class BusinessDatasetAttributesDefaultsBase(Attributes):
 @dataclass
 class BusinessDatasetAttributes(BusinessDatasetAttributesDefaultsBase, BusinessDatasetAttributesBase):
     pass
-
-
 # END BusinessDatasetAttributes
 
 
@@ -136,8 +130,6 @@ class BusinessDatasetAttributes(BusinessDatasetAttributesDefaultsBase, BusinessD
 @dataclass
 class BusinessDatasetBase(EntityBase):
     attributes: BusinessDatasetAttributes
-
-
 # END BusinessDatasetBase
 
 
@@ -145,14 +137,12 @@ class BusinessDatasetBase(EntityBase):
 @dataclass
 class BusinessDatasetDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessDatasetDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessDataset(Entity, BusinessDatasetDefaultsBase, BusinessDatasetBase):
+class BusinessDataset(BusinessDatasetDefaultsBase, BusinessDatasetBase, Entity):
     type_name: str = "m4i_dataset"
 
     @classmethod

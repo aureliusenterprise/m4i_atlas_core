@@ -1,11 +1,11 @@
 from dataclasses import dataclass, field
-from typing import Iterable, Optional, List
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
-from ..core import (AttributeDef, Attributes, Entity, EntityBase,
-                    EntityDef, EntityDefaultsBase, ObjectId,
-                    TypeCategory, RelationshipDef, RelationshipEndDef, Cardinality)
 
+from ..core import (AttributeDef, Attributes, Cardinality, Entity, EntityBase,
+                    EntityDef, EntityDefaultsBase, ObjectId, RelationshipDef,
+                    RelationshipEndDef, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 atlas_collection_attributes_def = [
@@ -75,9 +75,6 @@ m4i_collection_system_rel_def = RelationshipDef(
 @dataclass
 class BusinessCollectionAttributesBase(M4IAttributesBase):
     name: str
-
-
-
 # END BusinessCollectionsAttributesBase
 
 
@@ -88,8 +85,6 @@ class BusinessCollectionAttributesDefaultsBase(Attributes):
     datasets: List[ObjectId] = field(default_factory=list)
     source: List[ObjectId] = field(default_factory=list)
     systems: List[ObjectId] = field(default_factory=list)
-
-
 # END BusinessCollectionAttributesDefaultsBase
 
 
@@ -97,8 +92,6 @@ class BusinessCollectionAttributesDefaultsBase(Attributes):
 @dataclass
 class BusinessCollectionAttributes(BusinessCollectionAttributesDefaultsBase, BusinessCollectionAttributesBase):
     pass
-
-
 # END BusinessCollectionAttributes
 
 
@@ -106,8 +99,6 @@ class BusinessCollectionAttributes(BusinessCollectionAttributesDefaultsBase, Bus
 @dataclass
 class BusinessCollectionBase(EntityBase):
     attributes: BusinessCollectionAttributes
-
-
 # END BusinessCollectionBase
 
 
@@ -115,14 +106,12 @@ class BusinessCollectionBase(EntityBase):
 @dataclass
 class BusinessCollectionDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessCollectionDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessCollection(Entity, BusinessCollectionDefaultsBase, BusinessCollectionBase):
+class BusinessCollection(BusinessCollectionDefaultsBase, BusinessCollectionBase, Entity):
     type_name: str = "m4i_collection"
 
     @classmethod
@@ -131,20 +120,13 @@ class BusinessCollection(Entity, BusinessCollectionDefaultsBase, BusinessCollect
 
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
-        Returns the systems referenced by this collection
+        Returns the systems, datasets and sources referenced by this collection
         """
-        references = [*self.attributes.systems]
-
-        if self.attributes.datasets is not None:
-            references = [
-                *references,
-                *self.attributes.datasets
-            ]
-        # END IF
-
-        if self.attributes.source is not None:
-            references = [*references, *self.attributes.source]
-        # END IF
+        references = [
+            *self.attributes.systems,
+            *self.attributes.datasets,
+            *self.attributes.source
+        ]
 
         return filter(None, references)
     # END get_referred_entities

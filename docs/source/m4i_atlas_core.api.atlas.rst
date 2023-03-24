@@ -60,6 +60,14 @@ m4i\_atlas\_core.api.atlas.delete\_entity\_soft module
    :undoc-members:
    :show-inheritance:
 
+m4i\_atlas\_core.api.atlas.get\_classification\_defs module
+-----------------------------------------------------------
+
+.. automodule:: m4i_atlas_core.api.atlas.get_classification_defs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 m4i\_atlas\_core.api.atlas.get\_entities\_by\_attribute module
 --------------------------------------------------------------
 
@@ -72,6 +80,14 @@ m4i\_atlas\_core.api.atlas.get\_entities\_by\_type\_name module
 ---------------------------------------------------------------
 
 .. automodule:: m4i_atlas_core.api.atlas.get_entities_by_type_name
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+m4i\_atlas\_core.api.atlas.get\_entity\_audit module
+----------------------------------------------------
+
+.. automodule:: m4i_atlas_core.api.atlas.get_entity_audit
    :members:
    :undoc-members:
    :show-inheritance:
@@ -124,10 +140,42 @@ m4i\_atlas\_core.api.atlas.get\_glossary\_term\_by\_guid module
    :undoc-members:
    :show-inheritance:
 
+m4i\_atlas\_core.api.atlas.get\_lineage\_by\_guid module
+--------------------------------------------------------
+
+.. automodule:: m4i_atlas_core.api.atlas.get_lineage_by_guid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+m4i\_atlas\_core.api.atlas.get\_lineage\_by\_qualified\_name module
+-------------------------------------------------------------------
+
+.. automodule:: m4i_atlas_core.api.atlas.get_lineage_by_qualified_name
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+m4i\_atlas\_core.api.atlas.get\_type\_def module
+------------------------------------------------
+
+.. automodule:: m4i_atlas_core.api.atlas.get_type_def
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 m4i\_atlas\_core.api.atlas.get\_type\_defs module
 -------------------------------------------------
 
 .. automodule:: m4i_atlas_core.api.atlas.get_type_defs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+m4i\_atlas\_core.api.atlas.update\_type\_defs module
+----------------------------------------------------
+
+.. automodule:: m4i_atlas_core.api.atlas.update_type_defs
    :members:
    :undoc-members:
    :show-inheritance:

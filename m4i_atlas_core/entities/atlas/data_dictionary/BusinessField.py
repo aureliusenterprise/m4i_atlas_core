@@ -167,8 +167,6 @@ m4i_pfield_cfield_rel_def = RelationshipDef(
 @dataclass
 class BusinessFieldAttributesBase(M4IAttributesBase):
     name: str
-
-
 # END BusinessFieldAttributesBase
 
 
@@ -185,8 +183,6 @@ class BusinessFieldAttributesDefaultsBase(Attributes):
     attributes: List[ObjectId] = field(default_factory=list)
     source: List[ObjectId] = field(default_factory=list)
     datasets: List[ObjectId] = field(default_factory=list)
-
-
 # END BusinessFieldAttributesDefaultsBase
 
 
@@ -194,8 +190,6 @@ class BusinessFieldAttributesDefaultsBase(Attributes):
 @dataclass
 class BusinessFieldAttributes(BusinessFieldAttributesDefaultsBase, BusinessFieldAttributesBase):
     pass
-
-
 # END BusinessFieldAttributes
 
 
@@ -203,8 +197,6 @@ class BusinessFieldAttributes(BusinessFieldAttributesDefaultsBase, BusinessField
 @dataclass
 class BusinessFieldBase(EntityBase):
     attributes: BusinessFieldAttributes
-
-
 # END BusinessFieldBase
 
 
@@ -212,14 +204,12 @@ class BusinessFieldBase(EntityBase):
 @dataclass
 class BusinessFieldDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END BusinessFieldDefaultsBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessField(Entity, BusinessFieldDefaultsBase, BusinessFieldBase):
+class BusinessField(BusinessFieldDefaultsBase, BusinessFieldBase, Entity):
     type_name: str = "m4i_field"
 
     @classmethod
