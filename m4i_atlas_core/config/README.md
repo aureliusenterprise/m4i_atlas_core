@@ -15,9 +15,9 @@
 
 - Singleton-based implementation ensures a single source of truth for your configuration settings.
 - Ability to load your configuration settings on application start.
-- Easy storage and retrieval of configuration settings using simple get and set methods.
+- Easy storage and retrieval of configuration settings using simple `get` and `set` methods.
 - Support for default values and required settings.
-- Bulk retrieval and storage of settings using get_many and set_many methods.
+- Bulk retrieval and storage of settings using `get_many` and `set_many` methods.
 
 ## How to use
 
@@ -72,7 +72,7 @@ You can also provide a default value if the key is not found:
 value = store.get("key", default="default_value")
 ```
 
-If a key is required and not found in the `ConfigStore`, you can raise a `MissingRequiredConfigException` by setting the required parameter to True:
+If a key is required and not found in the `ConfigStore`, you can raise a `MissingRequiredConfigException` by setting the required parameter to `True`:
 
 ```python
 value = store.get("key", required=True)
@@ -101,17 +101,17 @@ key1, key2, key3 = store.get_many("key1", "key2", "key3", all_required=True)
 
 ### Resetting the ConfigStore
 
-To reset the ConfigStore and remove all stored configuration settings, use the reset method:
+To reset the `ConfigStore` and remove all stored configuration settings, use the reset method:
 
 ```python
 store.reset()
 ```
 
-This will clear the ConfigStore and reset it to an empty state.
+This will clear the `ConfigStore` and reset it to an empty state.
 
 ### Error Handling
 
-The ConfigStore raises a `MissingRequiredConfigException` when a required key is not found and no default value has been provided. This exception can be caught and handled as needed in your application:
+The `ConfigStore` raises a `MissingRequiredConfigException` when a required key is not found and no default value has been provided. This exception can be caught and handled as needed in your application:
 
 ```python
 from m4i_atlas_core import MissingRequiredConfigException
