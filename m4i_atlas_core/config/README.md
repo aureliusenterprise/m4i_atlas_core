@@ -31,7 +31,7 @@ To start using the `ConfigStore`, first import the necessary components and init
 from config import config
 from credentials import credentials
 
-from config_store import ConfigStore
+from m4i_atlas_core import ConfigStore
 
 store = ConfigStore.get_instance()
 store.load({
