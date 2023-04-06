@@ -113,7 +113,9 @@ domain_lead_ref = ObjectId(
 data_domain_attributes.domain_lead = [domain_lead_ref]
 ```
 
-This code snippet creates an `ObjectId` reference using the `qualified_name` of the `AtlasPerson` and assigns it to the `domain_lead` attribute of the `BusinessDataDomain`. This association establishes the relationship between the two entities. With this relationship defined, you can use the `create_entities` API function to save the entities and their relationships to Aurelius Atlas, effectively connecting the `BusinessDataDomain` to its corresponding `domain_lead` in the data governance model.
+This code snippet creates an `ObjectId` reference using the `qualified_name` of the `AtlasPerson` and assigns it to the `domain_lead` attribute of the `BusinessDataDomain`. This association establishes the relationship between the two entities.
+
+With this relationship defined, you can use the `create_entities` API function to save the entities and their relationships to Aurelius Atlas, effectively connecting the `BusinessDataDomain` to its corresponding `domain_lead` in the data governance model.
 
 ### Serialization and deserialization
 
