@@ -109,7 +109,7 @@ domain_lead_ref = ObjectId(
     )
 )
 
-# Finally, we assign include reference as part of the domain lead attribute.
+# Finally, we include the reference as part of the domain lead attribute.
 data_domain_attributes.domain_lead = [domain_lead_ref]
 ```
 
