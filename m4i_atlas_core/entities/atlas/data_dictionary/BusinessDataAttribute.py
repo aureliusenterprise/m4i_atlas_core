@@ -240,6 +240,10 @@ class BusinessDataAttribute(BusinessDataAttributeDefaultsBase, BusinessDataAttri
     def get_type_def(cls):
         return data_attribute_def
 
+    def get_parents(self) -> Iterable[ObjectId]:
+        return self.attributes.data_entity
+    # END get_parents
+
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
         Returns the following references for this data attribute:

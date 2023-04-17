@@ -1,11 +1,11 @@
 from dataclasses import dataclass, field
-from typing import Iterable, Optional, List
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
-from ..core import (AttributeDef, Attributes, Entity, EntityBase,
-                    EntityDef, EntityDefaultsBase, ObjectId, PropagateTags,
-                    TypeCategory, RelationshipDef, RelationshipEndDef, Cardinality)
 
+from ..core import (AttributeDef, Attributes, Cardinality, Entity, EntityBase,
+                    EntityDef, EntityDefaultsBase, ObjectId, PropagateTags,
+                    RelationshipDef, RelationshipEndDef, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 atlas_dataset_attributes_def = [
@@ -148,6 +148,14 @@ class BusinessDataset(BusinessDatasetDefaultsBase, BusinessDatasetBase, Entity):
     @classmethod
     def get_type_def(cls):
         return atlas_dataset_def
+
+    def get_parents(self) -> Iterable[ObjectId]:
+        return [*self.attributes.parent_dataset, *self.attributes.collections]
+    # END get_parents
+
+    def get_children(self) -> Iterable[ObjectId]:
+        return [*self.attributes.child_dataset, *self.attributes.fields]
+    # END get_children
 
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
