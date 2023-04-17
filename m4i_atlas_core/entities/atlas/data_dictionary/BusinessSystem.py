@@ -127,6 +127,14 @@ class BusinessSystem(BusinessSystemDefaultsBase, BusinessSystemBase, Entity):
     def get_type_def(cls):
         return atlas_system_def
 
+    def get_parents(self) -> Iterable[ObjectId]:
+        return self.attributes.parent_system
+    # END get_parents
+
+    def get_children(self) -> Iterable[ObjectId]:
+        return [*self.attributes.child_system, *self.attributes.collections]
+    # END get_children
+
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
         Returns the collection referenced by this dataset

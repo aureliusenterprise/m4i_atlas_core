@@ -118,6 +118,14 @@ class BusinessCollection(BusinessCollectionDefaultsBase, BusinessCollectionBase,
     def get_type_def(cls):
         return atlas_collection_def
 
+    def get_parents(self) -> Iterable[ObjectId]:
+        return self.attributes.systems
+    # END get_parents
+
+    def get_children(self) -> Iterable[ObjectId]:
+        return self.attributes.datasets
+    # END get_children
+
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
         Returns the systems, datasets and sources referenced by this collection

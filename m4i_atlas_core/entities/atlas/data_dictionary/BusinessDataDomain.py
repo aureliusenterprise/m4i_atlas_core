@@ -80,6 +80,7 @@ class BusinessDataDomainAttributesBase(M4IAttributesBase):
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class BusinessDataDomainAttributesDefaultsBase(Attributes):
+    data_entity: List[ObjectId] = field(default_factory=list)
     definition: Optional[str] = None
     domain_lead: List[ObjectId] = field(default_factory=list)
     source: List[ObjectId] = field(default_factory=list)
@@ -115,6 +116,10 @@ class BusinessDataDomain(BusinessDataDomainDefaultsBase, BusinessDataDomainBase,
     @classmethod
     def get_type_def(cls):
         return data_domain_def
+    
+    def get_children(self) -> Iterable[ObjectId]:
+        return self.attributes.data_entity
+    # END get_children
 
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """

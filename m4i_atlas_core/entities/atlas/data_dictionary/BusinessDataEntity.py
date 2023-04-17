@@ -163,14 +163,13 @@ m4i_pentity_centity_rel_def = RelationshipDef(
 @dataclass
 class BusinessDataEntityAttributesBase(M4IAttributesBase):
     name: str
-
-
 # END BusinessDataEntityAttributesBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class BusinessDataEntityAttributesDefaultsBase(Attributes):
+    attributes: List[ObjectId] = field(default_factory=list)
     business_owner: List[ObjectId] = field(default_factory=list)
     child_entity: List[ObjectId] = field(default_factory=list)
     data_domain: List[ObjectId] = field(default_factory=list)
@@ -211,6 +210,14 @@ class BusinessDataEntity(BusinessDataEntityDefaultsBase, BusinessDataEntityBase,
     def get_type_def(cls):
         return data_entity_def
 
+    def get_parents(self) -> Iterable[ObjectId]:
+        return [*self.attributes.parent_entity, *self.attributes.data_domain]
+    # END get_parents
+
+    def get_children(self) -> Iterable[ObjectId]:
+        return [*self.attributes.child_entity, *self.attributes.attributes]
+    # END get_children
+
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
         Returns the following references for this data entity:
@@ -222,6 +229,7 @@ class BusinessDataEntity(BusinessDataEntityDefaultsBase, BusinessDataEntityBase,
         """
 
         references = [
+            *self.attributes.attributes,
             *self.attributes.business_owner,
             *self.attributes.steward,
             *self.attributes.data_domain,

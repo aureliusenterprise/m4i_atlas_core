@@ -1,11 +1,11 @@
 from dataclasses import dataclass, field
-from typing import Iterable, Optional, List
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
-from ..core import (AttributeDef, Attributes, Entity, EntityBase,
-                    EntityDef, EntityDefaultsBase, ObjectId,
-                    TypeCategory, RelationshipDef, RelationshipEndDef, Cardinality, PropagateTags)
 
+from ..core import (AttributeDef, Attributes, Cardinality, Entity, EntityBase,
+                    EntityDef, EntityDefaultsBase, ObjectId, PropagateTags,
+                    RelationshipDef, RelationshipEndDef, TypeCategory)
 from ..m4i.M4IAttributes import M4IAttributesBase
 
 data_field_attributes_def = [
@@ -177,6 +177,7 @@ class BusinessFieldAttributesDefaultsBase(Attributes):
     has_content: Optional[str] = None
     optional_field: Optional[str] = None
     definition: Optional[str] = None
+    data_quality: List[ObjectId] = field(default_factory=list)
     steward: List[ObjectId] = field(default_factory=list)
     parent_field: List[ObjectId] = field(default_factory=list)
     child_field: List[ObjectId] = field(default_factory=list)
@@ -215,6 +216,14 @@ class BusinessField(BusinessFieldDefaultsBase, BusinessFieldBase, Entity):
     @classmethod
     def get_type_def(cls):
         return data_field_def
+
+    def get_parents(self) -> Iterable[ObjectId]:
+        return [*self.attributes.parent_field, *self.attributes.datasets]
+    # END get_parents
+
+    def get_children(self) -> Iterable[ObjectId]:
+        return [*self.attributes.child_field, *self.attributes.data_quality]
+    # END get_children
 
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """

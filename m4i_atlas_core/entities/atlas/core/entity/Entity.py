@@ -5,12 +5,12 @@ from dataclasses_json import LetterCase, dataclass_json
 
 from ..attributes import Attributes
 from ..classification import Classification
+from ..exceptions import TypesDefNotFoundException
 from ..object_id import ObjectId
 from ..status import Status
 from ..struct import Struct, StructBase, StructDefaultsBase
 from ..term_assignment_header import TermAssignmentHeader
 from ..utils import create_placehoder_guid
-from ..exceptions import TypesDefNotFoundException
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
@@ -54,6 +54,22 @@ class Entity(Struct, EntityDefaultsBase, EntityBase):
     @classmethod
     def get_type_def(cls):
         raise TypesDefNotFoundException(f'{cls.__name__}: Type Definition Not Found')
+
+    def get_children(self) -> Iterable[ObjectId]:
+        """
+        Returns all children of this `Entity`.
+        Intended to be overridden by subtypes that declare specific reference points.
+        """
+        return []
+    # END get_children
+
+    def get_parents(self) -> Iterable[ObjectId]:
+        """
+        Returns all parents of this `Entity`.
+        Intended to be overridden by subtypes that declare specific reference points.
+        """
+        return []
+    # END get_parents
 
     def get_referred_entities(self) -> Iterable[ObjectId]:
         """
