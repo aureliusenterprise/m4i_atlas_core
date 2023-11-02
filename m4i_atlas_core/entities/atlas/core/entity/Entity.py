@@ -37,7 +37,7 @@ class EntityDefaultsBase(StructDefaultsBase):
     meanings: List[TermAssignmentHeader] = field(default_factory=list)
     provenance_type: Optional[int] = None
     proxy: Optional[bool] = None
-    relationship_attributes: Optional[Dict[str, Union[ObjectId, List[ObjectId]]]] = None
+    relationship_attributes: Optional[Dict[str, List[ObjectId]]] = None
     status: Optional[Status] = None
     update_time: Optional[float] = None
     updated_by: Optional[str] = None
