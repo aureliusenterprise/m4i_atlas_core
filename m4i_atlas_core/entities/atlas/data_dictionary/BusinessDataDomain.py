@@ -128,7 +128,8 @@ class BusinessDataDomain(BusinessDataDomainDefaultsBase, BusinessDataDomainBase,
 
         references = [
             *self.attributes.domain_lead,
-            *self.attributes.source
+            *self.attributes.source,
+            *self.attributes.data_entity
         ]
 
         return filter(None, references)
