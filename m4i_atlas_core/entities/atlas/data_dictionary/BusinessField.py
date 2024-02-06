@@ -251,6 +251,10 @@ class BusinessField(BusinessFieldDefaultsBase, BusinessFieldBase, Entity):
             references = [*references, *self.attributes.source]
         # END IF
 
+        if self.attributes.data_quality is not None:
+            references = [*references, *self.attributes.data_quality]
+        # END IF
+
         return filter(None, references)
     # END get_referred_entities
 
