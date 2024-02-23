@@ -42,3 +42,4 @@ class AtlasChangeMessage(DataClassJsonMixin):
     msg_created_by: str
     msg_creation_time: int
     message: AtlasChangeMessageBody
+    spooled: bool
