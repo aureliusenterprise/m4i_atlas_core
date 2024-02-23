@@ -7,7 +7,7 @@ from ....config import ConfigStore
 store = ConfigStore.get_instance()
 
 
-def get_keycloak_token(keycloak: KeycloakOpenID = None, credentials: Tuple[str, str] = None, totp: str = None) -> str:
+def get_keycloak_token(keycloak: KeycloakOpenID | None = None, credentials: Tuple[str, str] | None = None, totp: str | None = None) -> str:
     """
     Retrieves an access token from the given Keycloak instance using the given username and password.
 
