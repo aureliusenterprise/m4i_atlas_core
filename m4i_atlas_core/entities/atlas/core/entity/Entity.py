@@ -30,6 +30,7 @@ class EntityDefaultsBase(StructDefaultsBase):
     create_time: Optional[float] = None
     created_by: Optional[str] = None
     custom_attributes: Optional[Attributes] = None
+    display_text: Optional[str] = None
     guid: str = field(default_factory=create_placehoder_guid)
     home_id: Optional[str] = None
     is_incomplete: Optional[bool] = None
