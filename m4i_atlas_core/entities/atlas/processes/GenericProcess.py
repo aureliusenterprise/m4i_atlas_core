@@ -3,16 +3,10 @@ from typing import Iterable, Optional, List
 
 from dataclasses_json import LetterCase, dataclass_json
 
-from ..core import (AttributeDef, Cardinality, EntityDef, ObjectId,
+from ..core import (AttributeDef, Cardinality, Entity, EntityDef, ObjectId,
                     RelationshipDef, RelationshipEndDef, TypeCategory)
-from ..data_dictionary import (BusinessReferenceable,
-                               BusinessReferenceableAttributes,
-                               BusinessReferenceableAttributesBase,
-                               BusinessReferenceableAttributesDefaultsBase,
-                               BusinessReferenceableBase,
-                               BusinessReferenceableDefaultsBase)
 
-generic_process_super_type = ["Process", "m4i_referenceable"]
+generic_process_super_type = ["Process"]
 
 generic_process_attributes_def = [
     AttributeDef(
@@ -102,10 +96,7 @@ class GenericProcessDefaultsBase(BusinessReferenceableDefaultsBase):
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class GenericProcess(BusinessReferenceable,
-                     GenericProcessDefaultsBase,
-                     GenericProcessBase
-                     ):
+class GenericProcess(GenericProcessDefaultsBase, GenericProcessBase, Entity):
     type_name: str = "m4i_generic_process"
 
     @classmethod
