@@ -6,7 +6,7 @@ from dataclasses_json import LetterCase, dataclass_json
 from ..core import (AttributeDef, Cardinality, Entity, EntityDef, ObjectId,
                     RelationshipDef, RelationshipEndDef, TypeCategory)
 
-from ..data_dictionary import (BusinessReferenceableAttributes, BusinessReferenceableAttributesBase, BusinessReferenceableAttributesDefaultsBase)
+from ..data_dictionary import (BusinessReferenceableAttributes, BusinessReferenceableBase, BusinessReferenceableDefaultsBase, BusinessReferenceableAttributesBase, BusinessReferenceableAttributesDefaultsBase)
 
 generic_process_super_type = ["Process"]
 
