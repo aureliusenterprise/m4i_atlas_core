@@ -6,7 +6,7 @@ from dataclasses_json import LetterCase, dataclass_json
 from ..core import (AttributeDef, Cardinality, Entity, EntityDef, ObjectId,
                     RelationshipDef, RelationshipEndDef, TypeCategory)
 
-from ..data_dictionary import (BusinessReferenceableAttributes, BusinessReferenceableBase, BusinessReferenceableDefaultsBase, BusinessReferenceableAttributesBase, BusinessReferenceableAttributesDefaultsBase)
+from ..data_dictionary import (BusinessReferenceableBase, BusinessReferenceableDefaultsBase, BusinessReferenceableAttributesBase, BusinessReferenceableAttributesDefaultsBase)
 
 generic_process_super_type = ["Process"]
 
@@ -69,9 +69,7 @@ class GenericProcessAttributesDefaultsBase(BusinessReferenceableAttributesDefaul
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class GenericProcessAttributes(BusinessReferenceableAttributes,
-                               GenericProcessAttributesDefaultsBase,
-                               GenericProcessAttributesBase):
+class GenericProcessAttributes(GenericProcessAttributesDefaultsBase, GenericProcessAttributesBase):
     pass
 
 
