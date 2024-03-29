@@ -1,16 +1,19 @@
 from ..core import TypesDef
+from ..m4i.BusinessArchimate import *
+from ..m4i.BusinessReferenceable import *
+from ..m4i.BusinessSource import *
+from ..processes.GenericProcess import (GenericProcess, generic_process_def,
+                                        m4i_person_gprocess_rel_def,
+                                        m4i_system_process_rel_def)
 from .AtlasPerson import *
 from .BusinessCollection import *
 from .BusinessDataAttribute import *
 from .BusinessDataDomain import *
 from .BusinessDataEntity import *
-from .BusinessField import *
 from .BusinessDataQuality import *
 from .BusinessDataset import *
+from .BusinessField import *
 from .BusinessSystem import *
-from ..m4i.BusinessSource import *
-from ..m4i.BusinessReferenceable import *
-from ..m4i.BusinessArchimate import *
 
 data_dictionary_types_def = TypesDef(
     entity_defs=[
@@ -25,7 +28,8 @@ data_dictionary_types_def = TypesDef(
         atlas_collection_def,
         atlas_dataset_def,
         data_field_def,
-        data_quality_def
+        data_quality_def,
+        generic_process_def
 
     ],
     relationship_defs=[
@@ -46,7 +50,9 @@ data_dictionary_types_def = TypesDef(
         m4i_archimate_project_rel_def,
         m4i_business_source_rel_def,
         m4i_pfield_cfield_rel_def,
-        m4i_lead_entity_rel_def
+        m4i_lead_entity_rel_def,
+        m4i_person_gprocess_rel_def,
+        m4i_system_process_rel_def
     ],
     classification_defs=[
         m4i_classification_pii,
@@ -69,5 +75,6 @@ data_dictionary_entity_types = {
     "m4i_dataset": BusinessDataset,
     "m4i_collection": BusinessCollection,
     "m4i_system": BusinessSystem,
-    "m4i_data_quality": BusinessDataQuality
+    "m4i_data_quality": BusinessDataQuality,
+    "m4i_generic_process": GenericProcess
 }
