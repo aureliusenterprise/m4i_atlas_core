@@ -54,7 +54,7 @@ end_1_system_msprocess = RelationshipEndDef(
 )
 
 end_2_system_msprocess = RelationshipEndDef(
-    type="m4i_process",
+    type="m4i_generic_process",
     name="system"
 )
 

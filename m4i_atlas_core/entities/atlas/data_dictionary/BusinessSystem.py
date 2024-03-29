@@ -47,7 +47,7 @@ atlas_system_attributes_def = [
     ),
     AttributeDef(
         name="process",
-        type_name="array<m4i_process>",
+        type_name="array<m4i_generic_process>",
         is_indexable=False,
         description="The functional names of the Process that belong to the System",
         display_name="Child Process",
