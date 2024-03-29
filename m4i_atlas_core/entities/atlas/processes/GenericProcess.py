@@ -1,12 +1,11 @@
 from dataclasses import dataclass, field
-from typing import Iterable, Optional, List
+from typing import Iterable, List, Optional
 
 from dataclasses_json import LetterCase, dataclass_json
 
-from ..core import (AttributeDef, Cardinality, Entity, EntityDef, ObjectId,
-                    RelationshipDef, RelationshipEndDef, TypeCategory)
-
-from ..data_dictionary import (BusinessReferenceableBase, BusinessReferenceableDefaultsBase, BusinessReferenceableAttributesBase, BusinessReferenceableAttributesDefaultsBase)
+from ..core import (AttributeDef, Cardinality, Entity, EntityBase, EntityDef,
+                    EntityDefaultsBase, ObjectId, RelationshipDef,
+                    RelationshipEndDef, TypeCategory)
 
 generic_process_super_type = ["Process"]
 
@@ -31,6 +30,7 @@ end_1_person_gprocess = RelationshipEndDef(
     type="m4i_person",
     name="ProcessOwner",
 )
+
 end_2_person_gprocess = RelationshipEndDef(
     type="m4i_generic_process",
     name="processOwner"
@@ -46,24 +46,19 @@ m4i_person_gprocess_rel_def = RelationshipDef(
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class GenericProcessAttributesBase(BusinessReferenceableAttributesBase):
+class GenericProcessAttributesBase():
     pass
-
-
 # END GenericProcessAttributesBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class GenericProcessAttributesDefaultsBase(BusinessReferenceableAttributesDefaultsBase):
+class GenericProcessAttributesDefaultsBase():
     process_owner: List[ObjectId] = field(default_factory=list)
     description: Optional[str] = None
     name: Optional[str] = None
     inputs: List[ObjectId] = field(default_factory=list)
     outputs: List[ObjectId] = field(default_factory=list)
-
-
-
 # END GenericProcessAttributesBase
 
 
@@ -71,26 +66,20 @@ class GenericProcessAttributesDefaultsBase(BusinessReferenceableAttributesDefaul
 @dataclass
 class GenericProcessAttributes(GenericProcessAttributesDefaultsBase, GenericProcessAttributesBase):
     pass
-
-
 # END GenericProcessAttributes
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class GenericProcessBase(BusinessReferenceableBase):
+class GenericProcessBase(EntityBase):
     attributes: GenericProcessAttributes
-
-
 # END GenericProcessBase
 
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class GenericProcessDefaultsBase(BusinessReferenceableDefaultsBase):
+class GenericProcessDefaultsBase(EntityDefaultsBase):
     pass
-
-
 # END GenericProcessDefaultsBase
 
 
@@ -111,10 +100,11 @@ class GenericProcess(GenericProcessDefaultsBase, GenericProcessBase, Entity):
         list of outputs
         """
 
-        references = [*super().get_referred_entities(),
-                      *self.attributes.process_owner,
-                      *self.attributes.inputs,
-                      *self.attributes.outputs]
+        references = [
+            *self.attributes.process_owner,
+            *self.attributes.inputs,
+            *self.attributes.outputs
+        ]
 
         return filter(None, references)
     # END get_referred_entities
