@@ -46,7 +46,7 @@ atlas_system_attributes_def = [
         cardinality=Cardinality.SET
     ),
     AttributeDef(
-        name="process",
+        name="processes",
         type_name="array<m4i_generic_process>",
         is_indexable=False,
         description="The functional names of the Process that belong to the System",
@@ -101,7 +101,7 @@ class BusinessSystemAttributesDefaultsBase(Attributes):
     definition: Optional[str] = None
     parent_system: List[ObjectId] = field(default_factory=list)
     child_system: List[ObjectId] = field(default_factory=list)
-    process: List[ObjectId] = field(default_factory=list)
+    processes: List[ObjectId] = field(default_factory=list)
     source: List[ObjectId] = field(default_factory=list)
 # END BusinessSystemAttributesDefaultsBase
 
@@ -152,7 +152,7 @@ class BusinessSystem(BusinessSystemDefaultsBase, BusinessSystemBase, Entity):
             *self.attributes.collections,
             *self.attributes.parent_system,
             *self.attributes.child_system,
-            *self.attributes.process,
+            *self.attributes.processes,
             *self.attributes.source
         ]
 

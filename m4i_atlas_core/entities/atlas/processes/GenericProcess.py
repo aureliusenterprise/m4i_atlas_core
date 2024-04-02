@@ -16,7 +16,7 @@ generic_process_attributes_def = [
         cardinality=Cardinality.SET
     ),
     AttributeDef(
-        name="system",
+        name="systems",
         type_name="array<m4i_system>",
         cardinality=Cardinality.SET
     ),
@@ -50,12 +50,12 @@ m4i_person_gprocess_rel_def = RelationshipDef(
 
 end_1_system_msprocess = RelationshipEndDef(
     type="m4i_system",
-    name="process",
+    name="processes",
 )
 
 end_2_system_msprocess = RelationshipEndDef(
     type="m4i_generic_process",
-    name="system"
+    name="systems"
 )
 
 m4i_system_process_rel_def = RelationshipDef(
@@ -80,7 +80,7 @@ class GenericProcessAttributesDefaultsBase():
     name: Optional[str] = None
     inputs: List[ObjectId] = field(default_factory=list)
     outputs: List[ObjectId] = field(default_factory=list)
-    system: List[ObjectId] = field(default_factory=list)
+    systems: List[ObjectId] = field(default_factory=list)
 # END GenericProcessAttributesBase
 
 
@@ -126,7 +126,7 @@ class GenericProcess(GenericProcessDefaultsBase, GenericProcessBase, Entity):
             *self.attributes.process_owner,
             *self.attributes.inputs,
             *self.attributes.outputs,
-            *self.attributes.system
+            *self.attributes.systems
         ]
 
         return filter(None, references)
