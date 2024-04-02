@@ -7,7 +7,7 @@ from ..core import (AttributeDef, Cardinality, Entity, EntityBase, EntityDef,
                     EntityDefaultsBase, ObjectId, RelationshipDef,
                     RelationshipEndDef, TypeCategory)
 
-generic_process_super_type = ["Process"]
+generic_process_super_type = ["Process", "m4i_referenceable"]
 
 generic_process_attributes_def = [
     AttributeDef(
