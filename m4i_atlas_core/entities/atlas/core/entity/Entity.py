@@ -27,6 +27,7 @@ class EntityBase(StructBase):
 class EntityDefaultsBase(StructDefaultsBase):
 
     classifications: List[Classification] = field(default_factory=list)
+    classification_names: List[str] = field(default_factory=list)
     create_time: Optional[float] = None
     created_by: Optional[str] = None
     custom_attributes: Optional[Attributes] = None
