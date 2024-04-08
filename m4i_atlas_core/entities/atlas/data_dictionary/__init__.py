@@ -2,6 +2,7 @@ from ..core import TypesDef
 from ..m4i.BusinessArchimate import *
 from ..m4i.BusinessReferenceable import *
 from ..m4i.BusinessSource import *
+from ..m4i.BusinessGovDataQuality import (BusinessGovDataQuality, data_quality_gov_def)
 from ..processes.GenericProcess import (GenericProcess, generic_process_def,
                                         m4i_person_gprocess_rel_def,
                                         m4i_system_process_rel_def)
@@ -29,8 +30,8 @@ data_dictionary_types_def = TypesDef(
         atlas_dataset_def,
         data_field_def,
         data_quality_def,
-        generic_process_def
-
+        generic_process_def,
+        data_quality_gov_def
     ],
     relationship_defs=[
         m4i_psystem_csystem_rel_def,
@@ -76,5 +77,6 @@ data_dictionary_entity_types = {
     "m4i_collection": BusinessCollection,
     "m4i_system": BusinessSystem,
     "m4i_data_quality": BusinessDataQuality,
-    "m4i_generic_process": GenericProcess
+    "m4i_generic_process": GenericProcess,
+    "m4i_gov_data_quality": BusinessGovDataQuality
 }
