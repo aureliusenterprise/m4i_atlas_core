@@ -141,9 +141,7 @@ class BusinessGovDataQualityDefaultsBase(EntityDefaultsBase):
 
 @dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
-class BusinessGovDataQuality(Entity,
-                             BusinessGovDataQualityDefaultsBase,
-                             BusinessGovDataQualityBase):
+class BusinessGovDataQuality(BusinessGovDataQualityDefaultsBase, BusinessGovDataQualityBase, Entity):
     type_name: str = "m4i_gov_data_quality"
 
     @classmethod
